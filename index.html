@@ -10,7 +10,7 @@
 <meta name="keywords" content="Bootstrap CDN, Font Awesome, Google Fonts, Web Development, HTML Boilerplate, SEO Tags, Student Resources">
 <meta name="author" content="Web Dev Toolkit">
 <title>Web Dev Toolkit — Student Resource Hub</title>
-  <link rel="shortcut icon" href="settings.png" type="image/x-icon">
+<link rel="shortcut icon" href="settings.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -104,14 +104,102 @@
   .call-btn:hover { transform: scale(1.1); }
   .mail-btn { position: fixed; bottom: 152px; right: 28px; z-index: 999; background: #f5a623; color: #0d0f14; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 4px 20px rgba(245,166,35,.4); transition: transform .2s; }
   .mail-btn:hover { transform: scale(1.1); }
-  .contact-btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
   /* CURSOR TRAIL */
   #cursor-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; }
   .cursor-dot { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: background .3s; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); }
   .cursor-ring { position: fixed; width: 36px; height: 36px; border: 2px solid rgba(91,110,245,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .2s, height .2s, border-color .2s; }
 
-  /* BLOCKED overlay */
+  /* ── ABOUT SECTION ── */
+  #about { padding: 70px 0; border-top: 1px solid var(--border); }
+  .about-wrap { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+  .about-avatar-col { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .avatar-ring {
+    position: relative; width: 200px; height: 200px;
+  }
+  .avatar-ring::before {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    background: conic-gradient(var(--accent), var(--accent2), var(--accent3), var(--accent));
+    animation: spin-ring 4s linear infinite;
+    z-index: 0;
+  }
+  @keyframes spin-ring { to { transform: rotate(360deg); } }
+  .avatar-img {
+    position: relative; z-index: 1;
+    width: 196px; height: 196px; border-radius: 50%;
+    background: linear-gradient(135deg, #1e2a4a 0%, #0d1525 50%, #1a2040 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px; border: 3px solid var(--bg);
+    overflow: hidden; margin: 2px;
+  }
+  .avatar-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .avatar-badges { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  .avatar-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 500;
+  }
+  .avatar-badge .ab-icon { font-size: 18px; flex-shrink: 0; }
+  .avatar-badge .ab-label { color: var(--muted); font-size: 11px; }
+  .avatar-badge .ab-val { font-weight: 700; font-size: 13px; color: var(--text); }
+
+  .about-content { }
+  .about-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px; }
+  .about-name { font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
+  .about-name .name-accent { color: var(--accent); }
+  .about-role {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(90deg, rgba(91,110,245,0.15), rgba(34,211,165,0.1));
+    border: 1px solid rgba(91,110,245,0.3);
+    border-radius: 30px; padding: 6px 16px; font-size: 13px; font-weight: 600;
+    color: var(--accent2); margin-bottom: 20px;
+  }
+  .about-role .dot-live { width: 7px; height: 7px; background: var(--accent2); border-radius: 50%; animation: blink-dot 1.4s ease-in-out infinite; }
+  @keyframes blink-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+  .about-bio { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 28px; max-width: 520px; }
+  .about-bio strong { color: var(--text); font-weight: 600; }
+  .about-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px; }
+  .skill-pill {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;
+    transition: border-color .2s, background .2s;
+  }
+  .skill-pill:hover { border-color: var(--accent); background: rgba(91,110,245,0.06); }
+  .skill-pill .sp-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .skill-pill .sp-name { font-size: 13px; font-weight: 700; color: var(--text); font-family: var(--display); }
+  .about-contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .about-stat-row { display: flex; gap: 32px; margin-bottom: 28px; }
+  .about-stat { }
+  .about-stat .as-num { font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .about-stat .as-num span { color: var(--accent); }
+  .about-stat .as-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .institute-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 8px; padding: 8px 14px; font-size: 13px; color: var(--accent3);
+    font-weight: 600; margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+    .about-wrap { grid-template-columns: 1fr; }
+    .about-avatar-col { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .avatar-ring { width: 140px; height: 140px; }
+    .avatar-img { width: 136px; height: 136px; font-size: 52px; }
+    .about-skills-grid { grid-template-columns: repeat(2,1fr); }
+    .about-stat-row { gap: 20px; flex-wrap: wrap; }
+  }
+
+  /* ── CURSOR EFFECT MODE INDICATOR ── */
+  #cursor-mode-badge {
+    position: fixed; bottom: 220px; right: 28px; z-index: 998;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 5px 12px;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    font-family: var(--mono); letter-spacing: .04em;
+    transition: opacity .4s, color .4s;
+    pointer-events: none;
+  }
+
+  /* BLOCKED overlay — hidden by default, shown briefly on trigger */
   #blocked-overlay { display: none; position: fixed; inset: 0; background: rgba(13,15,20,0.97); z-index: 99999; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
   #blocked-overlay.show { display: flex; }
   #blocked-overlay .lock-icon { font-size: 60px; animation: pulse 1.5s infinite; }
@@ -133,8 +221,11 @@
 <div id="blocked-overlay">
   <div class="lock-icon">🔒</div>
   <p>Access Restricted</p>
-  <small>Developer tools are disabled on this page.</small>
+  <small id="block-msg">Developer tools are disabled on this page.</small>
 </div>
+
+<!-- CURSOR MODE BADGE -->
+<div id="cursor-mode-badge">✦ Effect 1</div>
 
 <!-- NAV -->
 <nav>
@@ -148,9 +239,13 @@
         <a href="#color-tools">Colors</a>
         <a href="#animation">Animation</a>
         <a href="#images">Images</a>
+        <a href="#illustrations">Illustrations</a>
+        <a href="#photos">Photos</a>
+        <a href="#backgrounds">Backgrounds</a>
         <a href="#boilerplate">Boilerplate</a>
         <a href="#seo">SEO Tags</a>
         <a href="#tools">Tools</a>
+        <a href="#about" style="color:var(--accent2);font-weight:700;">👨‍💻 About</a>
       </div>
     </div>
   </div>
@@ -178,6 +273,18 @@
       <span class="badge">Color Tools</span>
       <span class="badge">AOS</span>
       <span class="badge">Animate.css</span>
+      <span class="badge">unDraw</span>
+      <span class="badge">Storyset</span>
+      <span class="badge">ManyPixels</span>
+      <span class="badge">Open Peeps</span>
+      <span class="badge">Pexels</span>
+      <span class="badge">Unsplash</span>
+      <span class="badge">CSS Clip-path</span>
+      <span class="badge">Bootstrap Examples</span>
+      <span class="badge">Realtime Colors</span>
+      <span class="badge">Flat UI Colors</span>
+      <span class="badge">CSS Animations</span>
+      <span class="badge">CSS Backgrounds</span>
     </div>
   </div>
 </div>
@@ -232,17 +339,28 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div class="card" style="margin-top:0">
-      <div class="card-icon">📋</div>
-      <div class="card-title">Clipboard.js CDN</div>
-      <div class="card-sub">Makes copy-to-clipboard easy without Flash. Add before closing <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;/body&gt;</code>.</div>
-      <div class="code-block">
-        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <code>&lt;script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"&gt;&lt;/script&gt;</code>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Clipboard.js CDN</div>
+        <div class="card-sub">Makes copy-to-clipboard easy without Flash. Add before closing <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;/body&gt;</code>.</div>
+        <div class="code-block">
+          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"&gt;&lt;/script&gt;</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://clipboardjs.com/" target="_blank" class="btn btn-outline">🌐 Website</a>
+          <a href="https://www.npmjs.com/package/clipboard" target="_blank" class="btn btn-primary">NPM →</a>
+        </div>
       </div>
-      <div class="btn-row">
-        <a href="https://clipboardjs.com/" target="_blank" class="btn btn-outline">🌐 Website</a>
-        <a href="https://www.npmjs.com/package/clipboard" target="_blank" class="btn btn-primary">NPM →</a>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <div class="card-title">Bootstrap Examples</div>
+        <div class="card-sub">Ready-made Bootstrap 5 components, templates, and UI examples. Copy paste into your project.</div>
+        <div class="btn-row">
+          <a href="https://bootstrapexamples.com/" target="_blank" class="btn btn-primary">Browse Examples →</a>
+          <a href="https://getbootstrap.com/docs/5.3/examples/" target="_blank" class="btn btn-outline">Official →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -256,12 +374,8 @@
       <h2 class="sec-title">Fonts & Icon Libraries</h2>
       <p class="sec-sub">CDN links and download options for the most popular icon and font libraries.</p>
     </div>
-
-    <!-- ICON LIBRARIES — 4 side by side -->
     <h3 style="font-family:var(--display);font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--muted);">🔷 Icon Libraries</h3>
     <div class="grid-4">
-
-      <!-- Bootstrap Icons -->
       <div class="card">
         <div class="card-icon">🅱</div>
         <div class="card-title">Bootstrap Icons</div>
@@ -280,8 +394,6 @@
           <a href="https://github.com/twbs/icons/releases/" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
-
-      <!-- Font Awesome -->
       <div class="card">
         <div class="card-icon">🔥</div>
         <div class="card-title">Font Awesome 6</div>
@@ -300,8 +412,6 @@
           <a href="https://fontawesome.com/download" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
-
-      <!-- Google Material Icons -->
       <div class="card">
         <div class="card-icon">🔷</div>
         <div class="card-title">Google Material Icons</div>
@@ -319,8 +429,6 @@
           <a href="https://fonts.google.com/icons" target="_blank" class="btn btn-primary">Browse Icons →</a>
         </div>
       </div>
-
-      <!-- Ionicons -->
       <div class="card">
         <div class="card-icon">⚡</div>
         <div class="card-title">Ionicons</div>
@@ -339,16 +447,10 @@
           <a href="https://ionic.io/ionicons" target="_blank" class="btn btn-primary">Browse Icons →</a>
         </div>
       </div>
-
     </div>
-
     <div class="divider"></div>
-
-    <!-- FONT LIBRARIES — 2 side by side -->
     <h3 style="font-family:var(--display);font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--muted);">🅰 Font Libraries</h3>
     <div class="grid-2">
-
-      <!-- Google Fonts -->
       <div class="card">
         <div class="card-icon">🅰</div>
         <div class="card-title">Google Fonts CDN</div>
@@ -369,8 +471,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://fonts.google.com" target="_blank" class="btn btn-primary">Browse Fonts →</a>
         </div>
       </div>
-
-      <!-- Bunny Fonts -->
       <div class="card">
         <div class="card-icon">🐰</div>
         <div class="card-title">Bunny Fonts CDN</div>
@@ -390,21 +490,19 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://fonts.bunny.net/" target="_blank" class="btn btn-primary">Browse Fonts →</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- CSS TOOLS (getcssscan) -->
+<!-- CSS TOOLS -->
 <section id="css-tools">
   <div class="container">
     <div class="sec-header">
       <p class="sec-eyebrow">CSS Resources</p>
       <h2 class="sec-title">CSS Design Tools</h2>
-      <p class="sec-sub">Copy ready-made CSS components — buttons, shapes, checkboxes, box shadows and more from getcssscan.com.</p>
+      <p class="sec-sub">Copy ready-made CSS components — buttons, shapes, checkboxes, box shadows, clip-paths and more.</p>
     </div>
     <div class="grid-4">
-
       <div class="card">
         <div class="card-icon">🔘</div>
         <div class="card-title">CSS Buttons</div>
@@ -413,7 +511,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://getcssscan.com/css-buttons-examples" target="_blank" class="btn btn-primary">Browse Buttons →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">🔷</div>
         <div class="card-title">CSS Shapes</div>
@@ -422,7 +519,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://getcssscan.com/css-shapes" target="_blank" class="btn btn-primary">Browse Shapes →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">✅</div>
         <div class="card-title">CSS Checkboxes</div>
@@ -431,7 +527,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://getcssscan.com/css-checkboxes-examples" target="_blank" class="btn btn-primary">Browse Checkboxes →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">🌑</div>
         <div class="card-title">CSS Box Shadow</div>
@@ -440,15 +535,25 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://getcssscan.com/css-box-shadow-examples" target="_blank" class="btn btn-primary">Browse Shadows →</a>
         </div>
       </div>
-
-    </div>
-    <div class="divider"></div>
-    <div class="card" style="margin-top:0">
-      <div class="card-icon">🌐</div>
-      <div class="card-title">getcssscan.com — Full Resource Hub</div>
-      <div class="card-sub">All CSS tools in one place — buttons, shapes, checkboxes, box shadows, gradients, animations and more.</div>
-      <div class="btn-row">
-        <a href="https://getcssscan.com/" target="_blank" class="btn btn-primary">Visit getcssscan.com →</a>
+      <div class="card">
+        <div class="card-icon">✂️</div>
+        <div class="card-title">CSS Clip-path — Clippy</div>
+        <div class="card-sub">Visual clip-path maker by Bennett Feely. Create any polygon, circle or ellipse shape.</div>
+        <div class="code-block">
+          <div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>clip-path: polygon(50% 0%, 0% 100%, 100% 100%);</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://bennettfeely.com/clippy/" target="_blank" class="btn btn-primary">Open Clippy →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">getcssscan.com</div>
+        <div class="card-sub">All CSS tools in one place — buttons, shapes, checkboxes, box shadows, gradients and more.</div>
+        <div class="btn-row">
+          <a href="https://getcssscan.com/" target="_blank" class="btn btn-primary">Visit →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -463,7 +568,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
       <p class="sec-sub">Pick perfect color palettes and systems for your projects — all free.</p>
     </div>
     <div class="grid-4">
-
       <div class="card">
         <div class="card-icon">🌈</div>
         <div class="card-title">Coolors</div>
@@ -472,7 +576,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://coolors.co/" target="_blank" class="btn btn-primary">Open Tool →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">🟦</div>
         <div class="card-title">Open Color</div>
@@ -481,7 +584,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://yeun.github.io/open-color/" target="_blank" class="btn btn-primary">Open Tool →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">💨</div>
         <div class="card-title">Tailwind Color Palette</div>
@@ -490,7 +592,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://tailwindcss.com/docs/customizing-colors" target="_blank" class="btn btn-primary">View Palette →</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">🎯</div>
         <div class="card-title">Color Hunt</div>
@@ -499,7 +600,22 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <a href="https://colorhunt.co/" target="_blank" class="btn btn-primary">Browse Colors →</a>
         </div>
       </div>
-
+      <div class="card">
+        <div class="card-icon">🎛️</div>
+        <div class="card-title">Realtime Colors</div>
+        <div class="card-sub">Preview your color palette on a real UI in realtime. Perfect for choosing website colors.</div>
+        <div class="btn-row">
+          <a href="https://www.realtimecolors.com/" target="_blank" class="btn btn-primary">Try Now →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🟩</div>
+        <div class="card-title">Flat UI Colors</div>
+        <div class="card-sub">280 handpicked flat colors in 13 popular palettes. Copy HEX, RGB, or CSS variables instantly.</div>
+        <div class="btn-row">
+          <a href="https://flatuicolors.com/" target="_blank" class="btn btn-primary">Browse Colors →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -513,7 +629,6 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
       <p class="sec-sub">Add smooth animations and scroll effects to your website with these easy CDN libraries.</p>
     </div>
     <div class="grid-2">
-
       <div class="card">
         <div class="card-icon">📜</div>
         <div class="card-title">AOS — Animate On Scroll</div>
@@ -535,10 +650,8 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         </div>
         <div class="btn-row">
           <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-primary">View Demo →</a>
-          <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-icon">💫</div>
         <div class="card-title">Animate.css</div>
@@ -559,21 +672,113 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         </div>
         <div class="btn-row">
           <a href="https://animate.style/" target="_blank" class="btn btn-primary">View All Animations →</a>
-          <a href="https://animate.style/" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
+    </div>
 
+    <div class="divider"></div>
+    <h3 style="font-family:var(--display);font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--muted);">🎬 More CSS Animation & Effect Tools</h3>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon">🎞️</div>
+        <div class="card-title">Animista</div>
+        <div class="card-sub">On-demand CSS animation library. Pick an animation, customize it, and copy the CSS code.</div>
+        <div class="btn-row">
+          <a href="https://animista.net/" target="_blank" class="btn btn-primary">Open Tool →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <div class="card-title">Keyframes.app</div>
+        <div class="card-sub">Visual CSS animation editor. Create keyframe animations with a timeline — no code needed.</div>
+        <div class="btn-row">
+          <a href="https://keyframes.app/animate/" target="_blank" class="btn btn-primary">Open Tool →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <div class="card-title">CSS Tricks — Animations</div>
+        <div class="card-sub">Complete guide to CSS animations with examples, timing functions, and practical tutorials.</div>
+        <div class="btn-row">
+          <a href="https://css-tricks.com/almanac/properties/a/animation/" target="_blank" class="btn btn-primary">Read Guide →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎭</div>
+        <div class="card-title">Magic Animations CSS</div>
+        <div class="card-sub">Special CSS animations with unique effects. CDN ready, just add the class.</div>
+        <div class="code-block">
+          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magic.css@1.1.0/dist/magic.min.css"&gt;</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://www.minimamente.com/project/magic/" target="_blank" class="btn btn-primary">View Demo →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- IMAGES -->
-<section id="images">
+<!-- ILLUSTRATIONS -->
+<section id="illustrations">
   <div class="container">
     <div class="sec-header">
-      <p class="sec-eyebrow">Assets</p>
-      <h2 class="sec-title">Images & Assets</h2>
-      <p class="sec-sub">Free placeholder and stock images for your projects.</p>
+      <p class="sec-eyebrow">Vector Assets</p>
+      <h2 class="sec-title">🎨 Free Illustrations</h2>
+      <p class="sec-sub">High-quality free SVG illustrations for your websites and apps — no attribution required.</p>
+    </div>
+    <div class="grid-4">
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#1e2230,#2a3050);">🖼️</div>
+        <div class="img-card-body">
+          <h4>unDraw</h4>
+          <p>Open-source SVG illustrations for any idea. Change colors to match your brand instantly.</p>
+          <div class="btn-row">
+            <a href="https://undraw.co/illustrations" target="_blank" class="btn btn-primary">Browse →</a>
+          </div>
+        </div>
+      </div>
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#2a1e2a,#3a2040);">📖</div>
+        <div class="img-card-body">
+          <h4>Storyset</h4>
+          <p>Free customizable illustrations for your projects. Animate them too with one click!</p>
+          <div class="btn-row">
+            <a href="https://storyset.com/" target="_blank" class="btn btn-primary">Browse →</a>
+          </div>
+        </div>
+      </div>
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#1a2230,#2040a0);">🧩</div>
+        <div class="img-card-body">
+          <h4>ManyPixels</h4>
+          <p>2,500+ royalty-free illustrations. Download as SVG or PNG, customize colors freely.</p>
+          <div class="btn-row">
+            <a href="https://www.manypixels.co/gallery" target="_blank" class="btn btn-primary">Browse →</a>
+          </div>
+        </div>
+      </div>
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#1e2820,#204030);">🧍</div>
+        <div class="img-card-body">
+          <h4>Open Peeps</h4>
+          <p>Hand-drawn illustration library of people. Mix and match body parts to create unique characters.</p>
+          <div class="btn-row">
+            <a href="https://www.openpeeps.com/" target="_blank" class="btn btn-primary">Browse →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-eyebrow">Stock Photos</p>
+      <h2 class="sec-title">📸 Free Photos & Assets</h2>
+      <p class="sec-sub">Free placeholder and stock images for your projects — no watermarks, no attribution needed.</p>
     </div>
     <div class="grid-3">
       <div class="img-card">
@@ -604,8 +809,24 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         <div class="img-preview" style="background:linear-gradient(135deg,#1e2030,#2d2040);">📸</div>
         <div class="img-card-body">
           <h4>Pixabay — Free Stock</h4>
-          <p>Over 4M free photos, videos & music.</p>
+          <p>Over 4M free photos, videos & music. Safe for commercial use.</p>
           <div class="btn-row"><a href="https://pixabay.com/photos/" target="_blank" class="btn btn-primary">Browse Photos →</a></div>
+        </div>
+      </div>
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#202030,#301848);">🌄</div>
+        <div class="img-card-body">
+          <h4>Pexels</h4>
+          <p>Free stock photos & videos shared by talented creators. No attribution required.</p>
+          <div class="btn-row"><a href="https://www.pexels.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
+        </div>
+      </div>
+      <div class="img-card">
+        <div class="img-preview" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">🏔️</div>
+        <div class="img-card-body">
+          <h4>Unsplash</h4>
+          <p>Over 3M free high-resolution photos. Beautiful, curated, free to use anywhere.</p>
+          <div class="btn-row"><a href="https://unsplash.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
         </div>
       </div>
       <div class="img-card">
@@ -616,24 +837,71 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
           <div class="btn-row"><a href="https://www.responsivedevice.com/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
         </div>
       </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1a2e1a,#1e3820);">🏫</div>
-        <div class="img-card-body">
-          <h4>W3Schools</h4>
-          <p>Best reference for HTML, CSS, JS tutorials.</p>
-          <div class="btn-row"><a href="https://www.w3schools.com/" target="_blank" class="btn btn-green">Learn →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS BACKGROUNDS -->
+<section id="backgrounds">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-eyebrow">Decorative CSS</p>
+      <h2 class="sec-title">🌌 CSS Backgrounds & Patterns</h2>
+      <p class="sec-sub">Generate beautiful CSS background patterns, gradients, and mesh effects for free.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon">🟣</div>
+        <div class="card-title">CSS Gradient</div>
+        <div class="card-sub">Ultimate CSS gradient generator. Visual tool — pick colors and copy the CSS instantly.</div>
+        <div class="btn-row">
+          <a href="https://cssgradient.io/" target="_blank" class="btn btn-primary">Open Tool →</a>
         </div>
       </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#2a1e30,#301e3a);">📞</div>
-        <div class="img-card-body">
-          <h4>Contact Arafat Ahmed</h4>
-          <p>WhatsApp, Call, or Email directly for help.</p>
-          <div class="btn-row">
-            <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
-            <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
-            <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Mail</a>
-          </div>
+      <div class="card">
+        <div class="card-icon">🔲</div>
+        <div class="card-title">Hero Patterns</div>
+        <div class="card-sub">Repeatable SVG background patterns for web projects. Free, copy CSS or SVG directly.</div>
+        <div class="btn-row">
+          <a href="https://heropatterns.com/" target="_blank" class="btn btn-primary">Browse Patterns →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <div class="card-title">SVG Waves — Haikei</div>
+        <div class="card-sub">Generate unique SVG waves, blobs, and shapes for backgrounds. Export as SVG or PNG.</div>
+        <div class="btn-row">
+          <a href="https://app.haikei.app/" target="_blank" class="btn btn-primary">Open Generator →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">Mesh Gradient</div>
+        <div class="card-sub">Generate stunning mesh gradients for modern UI backgrounds. Copy CSS or download as PNG.</div>
+        <div class="btn-row">
+          <a href="https://meshgradient.in/" target="_blank" class="btn btn-primary">Generate →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔵</div>
+        <div class="card-title">CSS Pattern Gallery</div>
+        <div class="card-sub">Magic Pattern — 100+ CSS background patterns. Dots, lines, checks — all pure CSS.</div>
+        <div class="btn-row">
+          <a href="https://www.magicpattern.design/tools/css-backgrounds" target="_blank" class="btn btn-primary">Browse →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🫧</div>
+        <div class="card-title">Glassmorphism</div>
+        <div class="card-sub">Generate glassmorphism CSS effects — the frosted glass look that's trending in modern UI.</div>
+        <div class="code-block">
+          <div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>background: rgba(255,255,255,0.1);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.2);</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://ui.glass/generator/" target="_blank" class="btn btn-primary">Generate →</a>
         </div>
       </div>
     </div>
@@ -927,6 +1195,12 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         <div class="card-sub">CSS buttons, shapes, checkboxes, box shadows and more — copy-paste ready.</div>
         <a href="https://getcssscan.com/" target="_blank" class="btn btn-amber" style="margin-top:4px">Open Tool →</a>
       </div>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <div class="card-title">Bootstrap Examples</div>
+        <div class="card-sub">Pre-built Bootstrap components, navbars, cards, heroes — ready to copy.</div>
+        <a href="https://bootstrapexamples.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Browse →</a>
+      </div>
     </div>
     <div class="divider"></div>
     <div class="card">
@@ -950,11 +1224,114 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
   </div>
 </section>
 
+<!-- ABOUT SECTION -->
+<section id="about">
+  <div class="container">
+    <div class="about-wrap">
+
+      <!-- LEFT: Avatar + meta badges -->
+      <div class="about-avatar-col">
+        <div class="avatar-ring">
+          <div class="avatar-img">👨‍💻</div>
+        </div>
+        <div class="avatar-badges" style="width:200px;">
+          <div class="avatar-badge">
+            <span class="ab-icon">🏫</span>
+            <div>
+              <div class="ab-label">Institute</div>
+              <div class="ab-val">Creative IT</div>
+            </div>
+          </div>
+          <div class="avatar-badge">
+            <span class="ab-icon">💼</span>
+            <div>
+              <div class="ab-label">Role</div>
+              <div class="ab-val">Faculty Member</div>
+            </div>
+          </div>
+          <div class="avatar-badge">
+            <span class="ab-icon">📍</span>
+            <div>
+              <div class="ab-label">Location</div>
+              <div class="ab-val">Bangladesh 🇧🇩</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="about-content">
+        <p class="about-eyebrow">👋 Meet Your Instructor</p>
+        <h2 class="about-name">Arafat <span class="name-accent">Ahmed</span></h2>
+        <div class="about-role">
+          <span class="dot-live"></span>
+          Faculty Member · Web &amp; Software Department
+        </div>
+        <div class="institute-tag">
+          🎓 Creative IT Institute — Web &amp; Software Department
+        </div>
+        <p class="about-bio">
+          আমি <strong>Arafat Ahmed</strong> — Creative IT Institute-এর Web &amp; Software Department-এর একজন Faculty Member। আমি শিক্ষার্থীদের <strong>HTML, CSS, JavaScript, Bootstrap</strong> এবং আধুনিক web development শেখাই। এই toolkit সাইটটি আমার ছাত্রছাত্রীদের জন্য তৈরি — যাতে তারা সব resource এক জায়গায় পান।
+        </p>
+
+        <div class="about-stat-row">
+          <div class="about-stat">
+            <div class="as-num">5<span>+</span></div>
+            <div class="as-label">Years Teaching</div>
+          </div>
+          <div class="about-stat">
+            <div class="as-num">500<span>+</span></div>
+            <div class="as-label">Students Trained</div>
+          </div>
+          <div class="about-stat">
+            <div class="as-num">10<span>+</span></div>
+            <div class="as-label">Courses Taught</div>
+          </div>
+        </div>
+
+        <div class="about-skills-grid">
+          <div class="skill-pill">
+            <span class="sp-label">Frontend</span>
+            <span class="sp-name">HTML / CSS</span>
+          </div>
+          <div class="skill-pill">
+            <span class="sp-label">Framework</span>
+            <span class="sp-name">Bootstrap 5</span>
+          </div>
+          <div class="skill-pill">
+            <span class="sp-label">Scripting</span>
+            <span class="sp-name">JavaScript</span>
+          </div>
+          <div class="skill-pill">
+            <span class="sp-label">Backend</span>
+            <span class="sp-name">PHP / MySQL</span>
+          </div>
+          <div class="skill-pill">
+            <span class="sp-label">Design</span>
+            <span class="sp-name">Figma / UI</span>
+          </div>
+          <div class="skill-pill">
+            <span class="sp-label">Version Control</span>
+            <span class="sp-name">Git / GitHub</span>
+          </div>
+        </div>
+
+        <div class="about-contact-row">
+          <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
+          <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
+          <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Email</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <p style="margin-bottom:8px;font-family:var(--display);font-size:1rem;color:var(--text);">WebDev Toolkit</p>
     <p>Made for students • All links are free and open source • Happy coding! 🚀</p>
-    <p style="margin-top:10px;font-size:12px;">© 2026 Arafat Ahmed • All rights reserved.</p>
+    <p style="margin-top:10px;font-size:12px;">© 2026 Arafat Ahmed — Creative IT Institute • All rights reserved.</p>
   </div>
 </footer>
 
@@ -964,177 +1341,374 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
 
 <script>
 /* ============================================================
-   ULTRA SECURITY — Block DevTools, View Source, Copy, Screenshot
+   SECURITY — Block DevTools, View Source, Copy, Screenshot
+   NOTE: debugger trap and console detection REMOVED — they
+   caused the blink/flicker issue on normal page load.
    ============================================================ */
 (function(){
 
   /* --- 1. Right-click block --- */
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); showBlock('Right-click is disabled.'); });
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+    showBlock('Right-click is disabled.');
+  });
 
   /* --- 2. Keyboard shortcut block --- */
   document.addEventListener('keydown', function(e){
     var k = (e.key||'').toLowerCase();
     var ctrl = e.ctrlKey || e.metaKey;
     var shift = e.shiftKey;
-    // F12
-    if(e.keyCode===123){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
-    // Ctrl+Shift+I/J/C/K — DevTools panels
-    if(ctrl&&shift&&'ijck'.includes(k)){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
-    // Ctrl+U — view source
-    if(ctrl&&k==='u'){ e.preventDefault(); showBlock('View Source is disabled.'); return false; }
-    // Ctrl+S — save page
-    if(ctrl&&k==='s'){ e.preventDefault(); showBlock('Saving is disabled.'); return false; }
-    // Ctrl+A — select all
-    if(ctrl&&k==='a'){ e.preventDefault(); return false; }
-    // Ctrl+P — print
-    if(ctrl&&k==='p'){ e.preventDefault(); return false; }
-    // Ctrl+C — copy (block everywhere except search input & copy buttons)
-    if(ctrl&&k==='c'){
+
+    if(e.keyCode === 123){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
+    if(ctrl && shift && 'ijck'.includes(k)){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
+    if(ctrl && k === 'u'){ e.preventDefault(); showBlock('View Source is disabled.'); return false; }
+    if(ctrl && k === 's'){ e.preventDefault(); showBlock('Saving is disabled.'); return false; }
+    if(ctrl && k === 'a'){ e.preventDefault(); return false; }
+    if(ctrl && k === 'p'){ e.preventDefault(); return false; }
+    if(ctrl && k === 'c'){
       var active = document.activeElement;
-      var isSearchInput = active && active.id==='searchInput';
-      if(!isSearchInput){ e.preventDefault(); return false; }
+      if(!(active && active.id === 'searchInput')){
+        e.preventDefault(); return false;
+      }
     }
-    // Ctrl+X — cut
-    if(ctrl&&k==='x'){ e.preventDefault(); return false; }
-    // Ctrl+F — find (optional, uncomment to block)
-    // if(ctrl&&k==='f'){ e.preventDefault(); return false; }
+    if(ctrl && k === 'x'){ e.preventDefault(); return false; }
   });
 
-  /* --- 3. DevTools size detection (undocked window) --- */
-  var devToolsOpen = false;
+  /* --- 3. DevTools size detection (docked/undocked) ---
+     Only triggers when gap is VERY large to avoid false positives
+     from browser UI, zoom, or window snapping */
+  var devOpen = false;
+  var _blockTimer = null;
   setInterval(function(){
-    var widthGap  = window.outerWidth  - window.innerWidth  > 160;
-    var heightGap = window.outerHeight - window.innerHeight > 160;
-    if(widthGap || heightGap){
-      if(!devToolsOpen){ devToolsOpen=true; showBlock('DevTools detected!'); }
-    } else { devToolsOpen=false; hideBlock(); }
-  }, 400);
+    var wGap = window.outerWidth  - window.innerWidth;
+    var hGap = window.outerHeight - window.innerHeight;
+    /* Use 300px threshold to avoid triggering on normal browser chrome */
+    var open = wGap > 300 || hGap > 300;
+    if(open && !devOpen){
+      devOpen = true;
+      showBlock('DevTools detected!');
+    } else if(!open){
+      devOpen = false;
+    }
+  }, 800);
 
-  /* --- 4. debugger trap — runs continuously in background --- */
-  setInterval(function(){
-    var start = new Date();
-    (function(){ debugger; })();
-    if(new Date()-start > 100){ document.body.innerHTML=''; }
-  }, 1000);
-
-  /* --- 5. Disable drag on all elements --- */
+  /* --- 4. Disable drag --- */
   document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 
-  /* --- 6. Disable text selection on everything except search input --- */
+  /* --- 5. Disable text selection except search input --- */
   document.addEventListener('selectstart', function(e){
-    if(e.target && e.target.id==='searchInput') return;
+    if(e.target && e.target.id === 'searchInput') return;
     e.preventDefault();
   });
 
-  /* --- 7. Block print (Ctrl+P & browser print dialog) --- */
+  /* --- 6. Block print --- */
   window.addEventListener('beforeprint', function(e){ e.preventDefault(); window.stop(); });
-  var mq = window.matchMedia('print');
-  if(mq) mq.addListener(function(m){ if(m.matches){ document.body.style.display='none'; setTimeout(function(){ document.body.style.display=''; },500); } });
+  try {
+    var mq = window.matchMedia('print');
+    if(mq && mq.addListener) mq.addListener(function(m){
+      if(m.matches){ document.body.style.display='none'; setTimeout(function(){ document.body.style.display=''; },500); }
+    });
+  } catch(e){}
 
-  /* --- 8. Detect DevTools via console timing trick --- */
-  var devCheck = /./;
-  devCheck.toString = function(){ devToolsOpen=true; showBlock('DevTools detected!'); return ''; };
-  setInterval(function(){ console.log(devCheck); console.clear(); }, 1500);
-
-  /* --- 9. Block iFrame embedding (clickjacking protection) --- */
+  /* --- 7. Block iFrame embedding --- */
   if(window.top !== window.self){
-    window.top.location = window.self.location;
+    try { window.top.location = window.self.location; } catch(e){}
   }
 
+  /* --- 8. Remove HTML comments --- */
+  document.querySelectorAll('*').forEach(function(el){
+    el.childNodes.forEach(function(node){
+      if(node.nodeType === 8) node.remove();
+    });
+  });
+
+  /* --- Overlay helpers --- */
+  var _overlayTimer = null;
   function showBlock(msg){
     var el = document.getElementById('blocked-overlay');
-    var sm = el ? el.querySelector('small') : null;
+    var sm = document.getElementById('block-msg');
     if(sm && msg) sm.textContent = msg;
     if(el) el.classList.add('show');
-    setTimeout(hideBlock, 3000);
+    clearTimeout(_overlayTimer);
+    _overlayTimer = setTimeout(hideBlock, 2500);
   }
   function hideBlock(){
     var el = document.getElementById('blocked-overlay');
     if(el) el.classList.remove('show');
   }
 
-  /* --- 10. Obfuscate: remove source comments at runtime --- */
-  document.querySelectorAll('*').forEach(function(el){
-    el.childNodes.forEach(function(node){
-      if(node.nodeType===8) node.remove(); // remove HTML comments
-    });
-  });
-
 })();
 
 /* ============================================================
-   CURSOR TRAIL EFFECT
+   CURSOR TRAIL EFFECT — 3 MODES (scroll-based)
+   Mode 1 (top):    Colored sparkle particles  [original]
+   Mode 2 (middle): Neon comet tail — glowing streak
+   Mode 3 (bottom): Star burst / constellation dots
    ============================================================ */
 (function(){
-  var dot = document.getElementById('cursorDot');
-  var ring = document.getElementById('cursorRing');
+  var dot    = document.getElementById('cursorDot');
+  var ring   = document.getElementById('cursorRing');
   var canvas = document.getElementById('cursor-canvas');
-  var ctx = canvas.getContext('2d');
+  var ctx    = canvas.getContext('2d');
+  var badge  = document.getElementById('cursor-mode-badge');
   var W, H;
-  var mouse = {x: -100, y: -100};
+  var mouse   = {x: -100, y: -100};
   var ringPos = {x: -100, y: -100};
+  var mode    = 1; // 1, 2, or 3
+
+  /* ── shared particle pool ── */
   var particles = [];
-  var colors = ['#5b6ef5','#22d3a5','#f5a623','#e879f9','#38bdf8'];
+  /* ── mode 2: comet trail history ── */
+  var trail = [];
+  /* ── mode 3: star field ── */
+  var stars = [];
+
+  var colors1 = ['#5b6ef5','#22d3a5','#f5a623','#e879f9','#38bdf8'];
+  var colors3 = ['#ffffff','#ffe566','#22d3a5','#5b6ef5','#f5a623'];
 
   function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   window.addEventListener('resize', resize); resize();
 
+  /* ── Scroll → pick mode ── */
+  var badgeTimer;
+  function updateMode(){
+    var scrollY  = window.scrollY || window.pageYOffset;
+    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = maxScroll > 0 ? scrollY / maxScroll : 0;
+    var newMode = pct < 0.33 ? 1 : pct < 0.66 ? 2 : 3;
+    if(newMode !== mode){
+      mode = newMode;
+      var labels = {1:'✦ Effect 1 — Sparkle', 2:'⚡ Effect 2 — Comet', 3:'★ Effect 3 — Stardust'};
+      var bcolors = {1:'var(--accent)', 2:'var(--accent2)', 3:'var(--accent3)'};
+      badge.textContent = labels[mode];
+      badge.style.color = bcolors[mode];
+      badge.style.borderColor = bcolors[mode];
+      badge.style.opacity = '1';
+      clearTimeout(badgeTimer);
+      badgeTimer = setTimeout(function(){ badge.style.opacity='0'; }, 1800);
+      /* update dot & ring color */
+      var dc = {1:'#5b6ef5', 2:'#22d3a5', 3:'#f5a623'};
+      dot.style.background  = dc[mode];
+      dot.style.boxShadow   = '0 0 10px '+dc[mode]+', 0 0 20px '+dc[mode];
+      ring.style.borderColor = dc[mode].replace(')',',0.5)').replace('rgb','rgba').replace('#','').length > 8
+        ? dc[mode] : dc[mode]+'88';
+      /* clear old particles */
+      particles = []; trail = [];
+    }
+  }
+  window.addEventListener('scroll', updateMode, {passive:true});
+
+  /* ── Mouse move ── */
   document.addEventListener('mousemove', function(e){
     mouse.x = e.clientX; mouse.y = e.clientY;
     dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    for(var i=0;i<2;i++){
-      particles.push({
-        x: e.clientX, y: e.clientY,
-        vx: (Math.random()-0.5)*2,
-        vy: (Math.random()-0.5)*2 - 0.5,
-        alpha: 1,
-        size: Math.random()*5+2,
-        color: colors[Math.floor(Math.random()*colors.length)]
-      });
+    dot.style.top  = e.clientY + 'px';
+
+    if(mode === 1){
+      /* Sparkle particles */
+      for(var i = 0; i < 3; i++){
+        particles.push({
+          x: e.clientX, y: e.clientY,
+          vx: (Math.random()-0.5)*3,
+          vy: (Math.random()-0.5)*3 - 0.8,
+          alpha: 1,
+          size: Math.random()*6+2,
+          color: colors1[Math.floor(Math.random()*colors1.length)],
+          shape: Math.random() > 0.5 ? 'circle' : 'star'
+        });
+      }
+    } else if(mode === 2){
+      /* Comet — record trail points */
+      trail.push({x: e.clientX, y: e.clientY, age: 0});
+      if(trail.length > 32) trail.shift();
+    } else if(mode === 3){
+      /* Stardust — tiny stars burst out */
+      var n = Math.floor(Math.random()*3)+2;
+      for(var j = 0; j < n; j++){
+        var ang = Math.random() * Math.PI * 2;
+        var spd = Math.random()*3+0.5;
+        stars.push({
+          x: e.clientX, y: e.clientY,
+          vx: Math.cos(ang)*spd, vy: Math.sin(ang)*spd,
+          alpha: 1,
+          size: Math.random()*3+1,
+          color: colors3[Math.floor(Math.random()*colors3.length)],
+          twinkle: Math.random()*Math.PI*2
+        });
+      }
     }
   });
 
+  /* ── Ring follower ── */
   function animateRing(){
     ringPos.x += (mouse.x - ringPos.x) * 0.12;
     ringPos.y += (mouse.y - ringPos.y) * 0.12;
     ring.style.left = ringPos.x + 'px';
-    ring.style.top = ringPos.y + 'px';
+    ring.style.top  = ringPos.y + 'px';
     requestAnimationFrame(animateRing);
   }
   animateRing();
 
-  function animateParticles(){
+  /* ── Draw star shape ── */
+  function drawStar(cx,cy,r,points,ctx){
+    var step = Math.PI/points, rot = -Math.PI/2;
+    ctx.beginPath();
+    for(var i=0;i<points*2;i++){
+      var rad = i%2===0 ? r : r*0.45;
+      ctx.lineTo(cx + Math.cos(rot+step*i)*rad, cy + Math.sin(rot+step*i)*rad);
+    }
+    ctx.closePath();
+  }
+
+  /* ── Main draw loop ── */
+  function drawLoop(){
     ctx.clearRect(0,0,W,H);
-    for(var i=particles.length-1; i>=0; i--){
-      var p = particles[i];
-      p.x += p.vx; p.y += p.vy;
-      p.alpha -= 0.025;
-      p.size *= 0.97;
-      if(p.alpha <= 0){ particles.splice(i,1); continue; }
+
+    if(mode === 1){
+      /* ── Sparkle ── */
+      for(var i=particles.length-1;i>=0;i--){
+        var p=particles[i];
+        p.x+=p.vx; p.y+=p.vy; p.vy+=0.06;
+        p.alpha-=0.022; p.size*=0.97;
+        if(p.alpha<=0){particles.splice(i,1);continue;}
+        ctx.save();
+        ctx.globalAlpha=p.alpha;
+        ctx.shadowColor=p.color; ctx.shadowBlur=10;
+        ctx.fillStyle=p.color;
+        if(p.shape==='star'){
+          drawStar(p.x,p.y,p.size,4,ctx);
+          ctx.fill();
+        } else {
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+        }
+        ctx.restore();
+      }
+
+    } else if(mode === 2){
+      /* ── Comet neon tail ── */
+      for(var t=0;t<trail.length;t++){
+        trail[t].age++;
+      }
+      /* draw segments */
+      if(trail.length > 2){
+        for(var t=1;t<trail.length;t++){
+          var prog = t/trail.length;
+          var alpha = prog * 0.9;
+          var width = prog * 10;
+          var hue   = 160 + prog*80; /* teal to blue */
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          ctx.strokeStyle = 'hsl('+hue+',100%,65%)';
+          ctx.shadowColor = 'hsl('+hue+',100%,65%)';
+          ctx.shadowBlur  = 18;
+          ctx.lineWidth   = width;
+          ctx.lineCap     = 'round';
+          ctx.beginPath();
+          ctx.moveTo(trail[t-1].x, trail[t-1].y);
+          ctx.lineTo(trail[t].x, trail[t].y);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+      /* glowing head */
+      if(trail.length){
+        var head = trail[trail.length-1];
+        ctx.save();
+        var grd = ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,18);
+        grd.addColorStop(0,'rgba(255,255,255,0.9)');
+        grd.addColorStop(0.4,'rgba(34,211,165,0.7)');
+        grd.addColorStop(1,'rgba(34,211,165,0)');
+        ctx.fillStyle=grd; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=24;
+        ctx.beginPath(); ctx.arc(head.x,head.y,9,0,Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+      /* fade trail over time */
+      if(trail.length && trail[0].age > 20) trail.shift();
+
+    } else if(mode === 3){
+      /* ── Stardust constellation ── */
+      for(var i=stars.length-1;i>=0;i--){
+        var s=stars[i];
+        s.x+=s.vx; s.y+=s.vy;
+        s.vx*=0.96; s.vy*=0.96;
+        s.alpha-=0.018;
+        s.twinkle+=0.2;
+        if(s.alpha<=0){stars.splice(i,1);continue;}
+        ctx.save();
+        ctx.globalAlpha = s.alpha * (0.7 + 0.3*Math.abs(Math.sin(s.twinkle)));
+        ctx.shadowColor = s.color; ctx.shadowBlur = 12;
+        ctx.fillStyle = s.color;
+        drawStar(s.x,s.y,s.size+1,5,ctx);
+        ctx.fill();
+        ctx.restore();
+      }
+      /* draw faint constellation lines between nearby stars */
       ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-      ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 8;
-      ctx.fill();
+      for(var i=0;i<stars.length;i++){
+        for(var j=i+1;j<stars.length;j++){
+          var dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y;
+          var dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<80){
+            var lineAlpha = (1-dist/80)*Math.min(stars[i].alpha,stars[j].alpha)*0.3;
+            ctx.globalAlpha=lineAlpha;
+            ctx.strokeStyle='#f5a623';
+            ctx.lineWidth=0.7;
+            ctx.beginPath();
+            ctx.moveTo(stars[i].x,stars[i].y);
+            ctx.lineTo(stars[j].x,stars[j].y);
+            ctx.stroke();
+          }
+        }
+      }
       ctx.restore();
     }
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
 
-  document.addEventListener('click', function(){
-    dot.style.transform = 'translate(-50%,-50%) scale(2)';
-    dot.style.background = '#22d3a5';
-    setTimeout(function(){ dot.style.transform='translate(-50%,-50%) scale(1)'; dot.style.background='var(--accent)'; }, 300);
+    requestAnimationFrame(drawLoop);
+  }
+  drawLoop();
+
+  /* ── Click burst ── */
+  document.addEventListener('click', function(e){
+    dot.style.transform = 'translate(-50%,-50%) scale(2.2)';
+    setTimeout(function(){ dot.style.transform='translate(-50%,-50%) scale(1)'; }, 280);
+
+    if(mode===1){
+      for(var i=0;i<8;i++){
+        var ang=Math.random()*Math.PI*2, spd=Math.random()*5+2;
+        particles.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
+          alpha:1,size:Math.random()*7+3,color:colors1[Math.floor(Math.random()*colors1.length)],shape:'star'});
+      }
+    } else if(mode===2){
+      /* neon ring flash */
+      (function(){
+        var cx=e.clientX,cy=e.clientY,r=0,alpha=1;
+        var ri=setInterval(function(){
+          r+=6; alpha-=0.07;
+          if(alpha<=0){clearInterval(ri);return;}
+          ctx.save();
+          ctx.globalAlpha=alpha;
+          ctx.strokeStyle='#22d3a5'; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=20;
+          ctx.lineWidth=3;
+          ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke();
+          ctx.restore();
+        },16);
+      })();
+    } else if(mode===3){
+      /* big star explosion */
+      for(var i=0;i<16;i++){
+        var ang=Math.random()*Math.PI*2, spd=Math.random()*6+2;
+        stars.push({x:e.clientX,y:e.clientY,
+          vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
+          alpha:1,size:Math.random()*5+2,
+          color:colors3[Math.floor(Math.random()*colors3.length)],
+          twinkle:Math.random()*Math.PI*2});
+      }
+    }
   });
 })();
 
 /* ============================================================
-   COPY FUNCTIONALITY (copy buttons only — not page content)
+   COPY FUNCTIONALITY
    ============================================================ */
 function copyCode(btn){
   var code = btn.closest('.code-block').querySelector('code');
@@ -1142,7 +1716,7 @@ function copyCode(btn){
   navigator.clipboard.writeText(text.trim()).then(function(){
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
-    setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
+    setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
@@ -1153,17 +1727,19 @@ var searchEngine = 'google';
 function setSearch(engine, e){
   searchEngine = engine;
   document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  (e ? e.target : event.target).classList.add('active');
+  if(e && e.target) e.target.classList.add('active');
   var input = document.getElementById('searchInput');
-  input.placeholder = engine==='youtube' ? 'Search YouTube for tutorials...' : 'Search Google for web dev resources...';
+  input.placeholder = engine === 'youtube'
+    ? 'Search YouTube for tutorials...'
+    : 'Search Google for web dev resources...';
 }
 function doSearch(){
   var q = document.getElementById('searchInput').value.trim();
   if(!q) return;
-  var url = searchEngine==='youtube'
-    ? 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)
-    : 'https://www.google.com/search?q='+encodeURIComponent(q);
-  window.open(url,'_blank');
+  var url = searchEngine === 'youtube'
+    ? 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q)
+    : 'https://www.google.com/search?q=' + encodeURIComponent(q);
+  window.open(url, '_blank');
 }
 </script>
 </body>
