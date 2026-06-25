@@ -100,6 +100,11 @@
   .divider { height: 1px; background: var(--border); margin: 28px 0; }
   .wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; background: #25D366; color: #fff; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 26px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: transform .2s; }
   .wa-btn:hover { transform: scale(1.1); }
+  .call-btn { position: fixed; bottom: 90px; right: 28px; z-index: 999; background: #5b6ef5; color: #fff; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 4px 20px rgba(91,110,245,.4); transition: transform .2s; }
+  .call-btn:hover { transform: scale(1.1); }
+  .mail-btn { position: fixed; bottom: 152px; right: 28px; z-index: 999; background: #f5a623; color: #0d0f14; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 4px 20px rgba(245,166,35,.4); transition: transform .2s; }
+  .mail-btn:hover { transform: scale(1.1); }
+  .contact-btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
   /* CURSOR TRAIL */
   #cursor-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; }
@@ -140,6 +145,8 @@
         <a href="#bootstrap">Bootstrap</a>
         <a href="#fonts">Fonts & Icons</a>
         <a href="#css-tools">CSS Tools</a>
+        <a href="#color-tools">Colors</a>
+        <a href="#animation">Animation</a>
         <a href="#images">Images</a>
         <a href="#boilerplate">Boilerplate</a>
         <a href="#seo">SEO Tags</a>
@@ -168,6 +175,9 @@
       <span class="badge">CSS Buttons</span>
       <span class="badge">CSS Shapes</span>
       <span class="badge">CSS Box Shadow</span>
+      <span class="badge">Color Tools</span>
+      <span class="badge">AOS</span>
+      <span class="badge">Animate.css</span>
     </div>
   </div>
 </div>
@@ -204,7 +214,7 @@
           <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;</code>
         </div>
         <div class="btn-row">
-          <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank" class="btn btn-outline">⬇ Download</a>
+          <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank" class="btn btn-amber">⬇ Download</a>
           <a href="https://getbootstrap.com" target="_blank" class="btn btn-primary">Docs →</a>
         </div>
       </div>
@@ -217,7 +227,7 @@
           <code>&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code>
         </div>
         <div class="btn-row">
-          <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank" class="btn btn-outline">⬇ Download</a>
+          <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
     </div>
@@ -267,7 +277,7 @@
         </div>
         <div class="btn-row">
           <a href="https://icons.getbootstrap.com/" target="_blank" class="btn btn-primary">Browse →</a>
-          <a href="https://github.com/twbs/icons/releases/" target="_blank" class="btn btn-outline">⬇ Download</a>
+          <a href="https://github.com/twbs/icons/releases/" target="_blank" class="btn btn-amber">⬇ Download</a>
         </div>
       </div>
 
@@ -444,6 +454,119 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
   </div>
 </section>
 
+<!-- COLOR TOOLS -->
+<section id="color-tools">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-eyebrow">Design Resources</p>
+      <h2 class="sec-title">🎨 Color Tools</h2>
+      <p class="sec-sub">Pick perfect color palettes and systems for your projects — all free.</p>
+    </div>
+    <div class="grid-4">
+
+      <div class="card">
+        <div class="card-icon">🌈</div>
+        <div class="card-title">Coolors</div>
+        <div class="card-sub">Generate beautiful color palettes instantly. Lock colors you love and shuffle the rest.</div>
+        <div class="btn-row">
+          <a href="https://coolors.co/" target="_blank" class="btn btn-primary">Open Tool →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🟦</div>
+        <div class="card-title">Open Color</div>
+        <div class="card-sub">Open-source color system optimized for UI design. Consistent, accessible color scales.</div>
+        <div class="btn-row">
+          <a href="https://yeun.github.io/open-color/" target="_blank" class="btn btn-primary">Open Tool →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💨</div>
+        <div class="card-title">Tailwind Color Palette</div>
+        <div class="card-sub">Tailwind CSS's full default color palette with hex codes — perfect reference for any project.</div>
+        <div class="btn-row">
+          <a href="https://tailwindcss.com/docs/customizing-colors" target="_blank" class="btn btn-primary">View Palette →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Color Hunt</div>
+        <div class="card-sub">Thousands of hand-picked ready-made color combinations. Browse and copy hex codes.</div>
+        <div class="btn-row">
+          <a href="https://colorhunt.co/" target="_blank" class="btn btn-primary">Browse Colors →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ANIMATION LIBRARIES -->
+<section id="animation">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-eyebrow">Motion & Effects</p>
+      <h2 class="sec-title">✨ Animation Libraries</h2>
+      <p class="sec-sub">Add smooth animations and scroll effects to your website with these easy CDN libraries.</p>
+    </div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <div class="card-title">AOS — Animate On Scroll</div>
+        <div class="card-sub">Animate elements as they scroll into view. Add CSS + JS to <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code> and <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;/body&gt;</code>.</div>
+        <div class="code-block">
+          <div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"&gt;</code>
+        </div>
+        <div class="code-block" style="margin-top:8px">
+          <div class="code-header"><span>JS — before &lt;/body&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"&gt;&lt;/script&gt;
+&lt;script&gt;AOS.init();&lt;/script&gt;</code>
+        </div>
+        <div class="card-sub" style="margin-top:12px">Usage — add <code style="display:inline;padding:2px 6px;font-size:12px;">data-aos</code> to any element:</div>
+        <div class="code-block">
+          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;div data-aos="fade-up"&gt;Animates on scroll!&lt;/div&gt;
+&lt;div data-aos="zoom-in" data-aos-delay="200"&gt;Delayed zoom!&lt;/div&gt;</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-primary">View Demo →</a>
+          <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-amber">⬇ Download</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💫</div>
+        <div class="card-title">Animate.css</div>
+        <div class="card-sub">Just add a class to any element for instant CSS animations. No JS needed for basic use.</div>
+        <div class="code-block">
+          <div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"&gt;</code>
+        </div>
+        <div class="card-sub" style="margin-top:12px">Usage — add classes to any element:</div>
+        <div class="code-block">
+          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <code>&lt;h1 class="animate__animated animate__fadeIn"&gt;
+  Fades in!
+&lt;/h1&gt;
+&lt;p class="animate__animated animate__bounceIn"&gt;
+  Bounces in!
+&lt;/p&gt;</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://animate.style/" target="_blank" class="btn btn-primary">View All Animations →</a>
+          <a href="https://animate.style/" target="_blank" class="btn btn-amber">⬇ Download</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- IMAGES -->
 <section id="images">
   <div class="container">
@@ -502,11 +625,15 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         </div>
       </div>
       <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#2a1e30,#301e3a);">💬</div>
+        <div class="img-preview" style="background:linear-gradient(135deg,#2a1e30,#301e3a);">📞</div>
         <div class="img-card-body">
-          <h4>WhatsApp Web</h4>
-          <p>Share files, questions, links with your class.</p>
-          <div class="btn-row"><a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">Open WhatsApp →</a></div>
+          <h4>Contact Arafat Ahmed</h4>
+          <p>WhatsApp, Call, or Email directly for help.</p>
+          <div class="btn-row">
+            <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
+            <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
+            <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Mail</a>
+          </div>
         </div>
       </div>
     </div>
@@ -785,10 +912,14 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
         <a href="https://www.webcoachbd.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Visit →</a>
       </div>
       <div class="card">
-        <div class="card-icon">💬</div>
-        <div class="card-title">WhatsApp Web</div>
-        <div class="card-sub">Share your files and ask questions with classmates directly.</div>
-        <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green" style="margin-top:4px">Open WhatsApp →</a>
+        <div class="card-icon">📞</div>
+        <div class="card-title">Contact Arafat Ahmed</div>
+        <div class="card-sub">WhatsApp, Call, or Email for questions and help with your projects.</div>
+        <div class="btn-row" style="margin-top:8px">
+          <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
+          <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
+          <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Mail</a>
+        </div>
       </div>
       <div class="card">
         <div class="card-icon">🎨</div>
@@ -827,38 +958,108 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
   </div>
 </footer>
 
-<a href="https://wa.me/8801786945337" target="_blank" class="wa-btn" title="WhatsApp Web">💬</a>
+<a href="mailto:arafatahmed.cit.bd@gmail.com" class="mail-btn" title="Send Email">✉</a>
+<a href="tel:+8801516010811" class="call-btn" title="Call Now">📞</a>
+<a href="https://wa.me/8801786945337" target="_blank" class="wa-btn" title="WhatsApp">💬</a>
 
 <script>
 /* ============================================================
-   BLOCK: Right-click, Inspect, Ctrl+S, Ctrl+U, Ctrl+Shift+I/J/C/K, F12
+   ULTRA SECURITY — Block DevTools, View Source, Copy, Screenshot
    ============================================================ */
 (function(){
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); showBlock(); });
+
+  /* --- 1. Right-click block --- */
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); showBlock('Right-click is disabled.'); });
+
+  /* --- 2. Keyboard shortcut block --- */
   document.addEventListener('keydown', function(e){
-    var k = e.key ? e.key.toLowerCase() : '';
+    var k = (e.key||'').toLowerCase();
     var ctrl = e.ctrlKey || e.metaKey;
     var shift = e.shiftKey;
-    if(e.keyCode === 123){ e.preventDefault(); showBlock(); return false; }
-    if(ctrl && shift && (k==='i'||k==='j'||k==='c'||k==='k')){ e.preventDefault(); showBlock(); return false; }
-    if(ctrl && k==='u'){ e.preventDefault(); showBlock(); return false; }
-    if(ctrl && k==='s'){ e.preventDefault(); showBlock(); return false; }
-    if(ctrl && k==='a'){ e.preventDefault(); return false; }
-    if(ctrl && k==='p'){ e.preventDefault(); return false; }
+    // F12
+    if(e.keyCode===123){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
+    // Ctrl+Shift+I/J/C/K — DevTools panels
+    if(ctrl&&shift&&'ijck'.includes(k)){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
+    // Ctrl+U — view source
+    if(ctrl&&k==='u'){ e.preventDefault(); showBlock('View Source is disabled.'); return false; }
+    // Ctrl+S — save page
+    if(ctrl&&k==='s'){ e.preventDefault(); showBlock('Saving is disabled.'); return false; }
+    // Ctrl+A — select all
+    if(ctrl&&k==='a'){ e.preventDefault(); return false; }
+    // Ctrl+P — print
+    if(ctrl&&k==='p'){ e.preventDefault(); return false; }
+    // Ctrl+C — copy (block everywhere except search input & copy buttons)
+    if(ctrl&&k==='c'){
+      var active = document.activeElement;
+      var isSearchInput = active && active.id==='searchInput';
+      if(!isSearchInput){ e.preventDefault(); return false; }
+    }
+    // Ctrl+X — cut
+    if(ctrl&&k==='x'){ e.preventDefault(); return false; }
+    // Ctrl+F — find (optional, uncomment to block)
+    // if(ctrl&&k==='f'){ e.preventDefault(); return false; }
   });
+
+  /* --- 3. DevTools size detection (undocked window) --- */
   var devToolsOpen = false;
   setInterval(function(){
-    if(window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160){
-      if(!devToolsOpen){ devToolsOpen = true; showBlock(); }
-    } else { devToolsOpen = false; hideBlock(); }
-  }, 500);
-  function showBlock(){
-    document.getElementById('blocked-overlay').classList.add('show');
+    var widthGap  = window.outerWidth  - window.innerWidth  > 160;
+    var heightGap = window.outerHeight - window.innerHeight > 160;
+    if(widthGap || heightGap){
+      if(!devToolsOpen){ devToolsOpen=true; showBlock('DevTools detected!'); }
+    } else { devToolsOpen=false; hideBlock(); }
+  }, 400);
+
+  /* --- 4. debugger trap — runs continuously in background --- */
+  setInterval(function(){
+    var start = new Date();
+    (function(){ debugger; })();
+    if(new Date()-start > 100){ document.body.innerHTML=''; }
+  }, 1000);
+
+  /* --- 5. Disable drag on all elements --- */
+  document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+
+  /* --- 6. Disable text selection on everything except search input --- */
+  document.addEventListener('selectstart', function(e){
+    if(e.target && e.target.id==='searchInput') return;
+    e.preventDefault();
+  });
+
+  /* --- 7. Block print (Ctrl+P & browser print dialog) --- */
+  window.addEventListener('beforeprint', function(e){ e.preventDefault(); window.stop(); });
+  var mq = window.matchMedia('print');
+  if(mq) mq.addListener(function(m){ if(m.matches){ document.body.style.display='none'; setTimeout(function(){ document.body.style.display=''; },500); } });
+
+  /* --- 8. Detect DevTools via console timing trick --- */
+  var devCheck = /./;
+  devCheck.toString = function(){ devToolsOpen=true; showBlock('DevTools detected!'); return ''; };
+  setInterval(function(){ console.log(devCheck); console.clear(); }, 1500);
+
+  /* --- 9. Block iFrame embedding (clickjacking protection) --- */
+  if(window.top !== window.self){
+    window.top.location = window.self.location;
+  }
+
+  function showBlock(msg){
+    var el = document.getElementById('blocked-overlay');
+    var sm = el ? el.querySelector('small') : null;
+    if(sm && msg) sm.textContent = msg;
+    if(el) el.classList.add('show');
     setTimeout(hideBlock, 3000);
   }
   function hideBlock(){
-    document.getElementById('blocked-overlay').classList.remove('show');
+    var el = document.getElementById('blocked-overlay');
+    if(el) el.classList.remove('show');
   }
+
+  /* --- 10. Obfuscate: remove source comments at runtime --- */
+  document.querySelectorAll('*').forEach(function(el){
+    el.childNodes.forEach(function(node){
+      if(node.nodeType===8) node.remove(); // remove HTML comments
+    });
+  });
+
 })();
 
 /* ============================================================
@@ -933,7 +1134,7 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
 })();
 
 /* ============================================================
-   COPY FUNCTIONALITY
+   COPY FUNCTIONALITY (copy buttons only — not page content)
    ============================================================ */
 function copyCode(btn){
   var code = btn.closest('.code-block').querySelector('code');
