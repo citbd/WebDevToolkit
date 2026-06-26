@@ -1626,6 +1626,12 @@ window.addEventListener('resize', function() {
   });
 })();
 
+ function toggleFaq(item){
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!wasOpen){ item.classList.add('open'); }
+} 
+  
 function copyCode(btn){ var code = btn.closest('.code-block').querySelector('code'); var text = code.innerText || code.textContent; navigator.clipboard.writeText(text.trim()).then(function(){ btn.textContent = '✓ Copied!'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); }); }
 
 var searchEngine = 'google';
