@@ -40,80 +40,112 @@
   .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
   /* ══════════════════════════════════════
-     NAV — compact with dropdowns
+     NAV — REDESIGNED PILL/GLASSMORPHIC
   ══════════════════════════════════════ */
   nav {
     position: sticky; top: 0; z-index: 200;
-    background: rgba(13,15,20,0.96); backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border); padding: 10px 0;
+    background: rgba(13,15,20,0.88);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba(91,110,245,0.12);
+    padding: 0;
   }
-  .nav-inner {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  .nav-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px; max-width: 1100px; margin: 0 auto;
+    gap: 14px;
   }
   .logo {
-    font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700;
     color: var(--text); text-decoration: none;
-    display: flex; align-items: center; gap: 7px; flex-shrink: 0;
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
   }
-  .logo-dot { width: 9px; height: 9px; background: var(--accent); border-radius: 50%; display: inline-block; }
+  .logo-icon {
+    width: 30px; height: 30px; background: linear-gradient(135deg, #5b6ef5, #22d3a5);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
 
   /* About mini card */
   .about-mini {
     display: flex; align-items: center; gap: 10px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 5px 11px; flex-shrink: 0;
+    background: rgba(30,34,48,0.7); border: 1px solid var(--border);
+    border-radius: 50px; padding: 5px 14px 5px 7px; flex-shrink: 0;
+    backdrop-filter: blur(8px);
   }
   .about-avatar-sm {
-    width: 28px; height: 28px; border-radius: 50%;
+    width: 26px; height: 26px; border-radius: 50%;
     background: linear-gradient(135deg,#1e2a4a,#0d1525);
     display: flex; align-items: center; justify-content: center;
-    font-size: 15px; border: 1.5px solid var(--accent); flex-shrink: 0;
+    font-size: 13px; border: 1.5px solid var(--accent); flex-shrink: 0;
   }
-  .about-info { display: flex; flex-direction: column; gap: 1px; }
   .about-name-sm { font-size: 11.5px; font-weight: 700; color: var(--text); font-family: var(--display); }
   .about-role-sm { font-size: 10px; color: var(--accent2); }
   .about-contact-sm { display: flex; gap: 4px; }
   .about-btn-sm {
-    font-size: 10px; font-weight: 700; padding: 3px 8px;
-    border-radius: 5px; text-decoration: none; transition: opacity .15s;
+    font-size: 10px; font-weight: 700; padding: 3px 9px;
+    border-radius: 50px; text-decoration: none; transition: opacity .15s, transform .15s;
   }
-  .about-btn-sm:hover { opacity: .82; }
+  .about-btn-sm:hover { opacity: .82; transform: scale(1.06); }
   .btn-wa  { background: #25D366; color: #fff; }
   .btn-call{ background: var(--accent); color: #fff; }
   .btn-mail{ background: var(--accent3); color: #0d0f14; }
 
-  /* Nav links row */
-  .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; flex: 1; }
+  /* Nav scroll bar */
+  .nav-bottom {
+    border-top: 1px solid rgba(42,47,66,0.4);
+    overflow-x: auto; scrollbar-width: none;
+    padding: 0 20px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .nav-bottom::-webkit-scrollbar { display: none; }
+  .nav-links {
+    display: flex; align-items: center; gap: 2px;
+    padding: 6px 0; white-space: nowrap; min-width: max-content;
+  }
   .nav-item  { position: relative; }
-
-  /* Nav buttons */
   .nav-item > button {
-    color: var(--muted); font-size: 12px; font-weight: 500;
-    padding: 5px 9px; border-radius: 6px; transition: all .18s;
+    color: var(--muted); font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: 50px; transition: all .18s;
     background: none; border: none; cursor: pointer; font-family: var(--sans);
-    display: flex; align-items: center; gap: 3px; white-space: nowrap;
+    display: flex; align-items: center; gap: 4px; white-space: nowrap;
+    letter-spacing: .01em;
   }
   .nav-item > button:hover,
-  .nav-item.open > button { color: var(--text); background: var(--card); }
-  .nav-arrow { font-size: 9px; transition: transform .2s; display: inline-block; }
+  .nav-item.open > button { color: var(--text); background: rgba(91,110,245,0.12); }
+  .nav-item.open > button { color: var(--accent); border: none; }
+  .nav-arrow { font-size: 8px; transition: transform .2s; display: inline-block; opacity: .6; }
   .nav-item.open .nav-arrow { transform: rotate(180deg); }
 
   /* Dropdown */
-  .dropdown {
-    display: none; position: absolute; top: calc(100% + 6px); left: 0;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); min-width: 175px;
-    box-shadow: 0 10px 32px rgba(0,0,0,.55); z-index: 500; overflow: hidden;
-  }
-  .nav-item.open .dropdown { display: block; }
+.dropdown {
+  display: none;
+  position: fixed;              /* ছিল absolute */
+  background: rgba(20,23,34,0.96);
+  border: 1px solid rgba(91,110,245,0.2);
+  border-radius: 14px; min-width: 190px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.7), 0 0 0 1px rgba(91,110,245,0.05);
+  z-index: 9999;                /* বাড়ানো হলো */
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+.nav-item.open .dropdown { display: block; animation: dropIn .15s ease; }
+  @keyframes dropIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+  .dropdown-section { padding: 6px; }
   .dropdown a {
-    display: block; padding: 8px 14px; color: var(--muted);
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 10px; color: var(--muted);
     text-decoration: none; font-size: 12px; font-weight: 500;
-    transition: background .14s, color .14s;
-    border-bottom: 1px solid rgba(42,47,66,.5);
+    transition: background .14s, color .14s; border-radius: 9px;
   }
-  .dropdown a:last-child { border-bottom: none; }
-  .dropdown a:hover { background: var(--card); color: var(--text); }
+  .dropdown a:hover { background: rgba(91,110,245,0.1); color: var(--text); }
+  .dropdown a .dd-icon { font-size: 14px; width: 22px; text-align: center; }
+
+  /* Active indicator dot */
+  .nav-dot {
+    width: 4px; height: 4px; background: var(--accent2); border-radius: 50%;
+    display: inline-block; margin-left: 2px; animation: blink-dot 1.4s infinite;
+  }
 
   /* ══════════════════════════════════════
      HERO
@@ -121,8 +153,13 @@
   .hero { padding: 80px 0 60px; text-align: center; position: relative; overflow: hidden; }
   .hero::before {
     content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-    width: 500px; height: 300px;
-    background: radial-gradient(ellipse at center, rgba(91,110,245,0.18) 0%, transparent 70%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse at center, rgba(91,110,245,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(34,211,165,0.05) 0%, transparent 60%);
     pointer-events: none;
   }
   .hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 18px; }
@@ -185,7 +222,7 @@
   .divider { height: 1px; background: var(--border); margin: 28px 0; }
 
   /* ══════════════════════════════════════
-     ABOUT SECTION (compact)
+     ABOUT SECTION
   ══════════════════════════════════════ */
   #about { padding: 50px 0; border-top: 1px solid var(--border); }
   .about-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: center; }
@@ -204,37 +241,21 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 60px; border: 3px solid var(--bg); overflow: hidden; margin: 2px;
   }
-  .avatar-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .avatar-badges { display: flex; flex-direction: column; gap: 7px; width: 100%; }
-  .avatar-badge {
-    display: flex; align-items: center; gap: 9px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 9px; padding: 8px 12px; font-size: 12px; font-weight: 500;
-  }
+  .avatar-badge { display: flex; align-items: center; gap: 9px; background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 8px 12px; font-size: 12px; font-weight: 500; }
   .avatar-badge .ab-icon { font-size: 16px; flex-shrink: 0; }
   .avatar-badge .ab-label { color: var(--muted); font-size: 10px; }
   .avatar-badge .ab-val { font-weight: 700; font-size: 12px; color: var(--text); }
-
   .about-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
   .about-name { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
   .about-name .name-accent { color: var(--accent); }
-  .about-role {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: linear-gradient(90deg, rgba(91,110,245,0.15), rgba(34,211,165,0.1));
-    border: 1px solid rgba(91,110,245,0.3); border-radius: 30px;
-    padding: 5px 14px; font-size: 12px; font-weight: 600;
-    color: var(--accent2); margin-bottom: 14px;
-  }
+  .about-role { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(90deg, rgba(91,110,245,0.15), rgba(34,211,165,0.1)); border: 1px solid rgba(91,110,245,0.3); border-radius: 30px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--accent2); margin-bottom: 14px; }
   .about-role .dot-live { width: 7px; height: 7px; background: var(--accent2); border-radius: 50%; animation: blink-dot 1.4s ease-in-out infinite; }
   @keyframes blink-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
   .about-bio { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; max-width: 520px; }
   .about-bio strong { color: var(--text); font-weight: 600; }
   .about-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
-  .skill-pill {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 7px;
-    padding: 8px 10px; display: flex; flex-direction: column; gap: 3px;
-    transition: border-color .2s, background .2s;
-  }
+  .skill-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; display: flex; flex-direction: column; gap: 3px; transition: border-color .2s, background .2s; }
   .skill-pill:hover { border-color: var(--accent); background: rgba(91,110,245,0.06); }
   .skill-pill .sp-label { font-size: 10px; color: var(--muted); font-weight: 500; }
   .skill-pill .sp-name { font-size: 12px; font-weight: 700; color: var(--text); font-family: var(--display); }
@@ -242,12 +263,197 @@
   .about-stat .as-num { font-family: var(--display); font-size: 1.7rem; font-weight: 700; color: var(--text); line-height: 1; }
   .about-stat .as-num span { color: var(--accent); }
   .about-stat .as-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .institute-tag {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25);
-    border-radius: 7px; padding: 6px 12px; font-size: 12px;
-    color: var(--accent3); font-weight: 600; margin-bottom: 14px;
+  .institute-tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25); border-radius: 7px; padding: 6px 12px; font-size: 12px; color: var(--accent3); font-weight: 600; margin-bottom: 14px; }
+
+  /* ══════════════════════════════════════
+     QUOTE SECTION
+  ══════════════════════════════════════ */
+  #quote-section {
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
   }
+  #quote-section::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse, rgba(91,110,245,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .quote-inner {
+    max-width: 780px; margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 44px;
+    position: relative;
+  }
+  .quote-inner::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    border-radius: 20px 20px 0 0;
+  }
+  .quote-mark {
+    font-family: var(--display);
+    font-size: 80px;
+    line-height: .8;
+    color: var(--accent);
+    opacity: .25;
+    margin-bottom: -16px;
+    display: block;
+    font-weight: 700;
+  }
+  .quote-text {
+    font-family: var(--display);
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+  .quote-text .highlight {
+    color: var(--accent2);
+    font-weight: 700;
+  }
+  .quote-text .highlight-amber {
+    color: var(--accent3);
+    font-weight: 700;
+  }
+  .quote-rule {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+  .quote-tagline {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .quote-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quote-author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .quote-author-name {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .quote-author-role {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+  }
+  .quote-cta-pills {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .cta-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 50px;
+    font-size: 12px; font-weight: 700;
+    text-decoration: none; transition: all .2s;
+    border: none; cursor: pointer; font-family: var(--sans);
+  }
+  .cta-pill-accent { background: var(--accent); color: #fff; }
+  .cta-pill-accent:hover { background: #4a5ee0; transform: translateY(-1px); }
+  .cta-pill-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .cta-pill-outline:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ══════════════════════════════════════
+     FAQ SECTION
+  ══════════════════════════════════════ */
+  #faq { padding: 60px 0; border-top: 1px solid var(--border); }
+  .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 32px; }
+  .faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item:hover { border-color: rgba(91,110,245,0.4); }
+  .faq-item.open { border-color: var(--accent); }
+  .faq-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px; cursor: pointer; gap: 14px;
+  }
+  .faq-q-text {
+    font-family: var(--display);
+    font-size: 14px; font-weight: 700; color: var(--text);
+    flex: 1; line-height: 1.4;
+  }
+  .faq-num {
+    font-family: var(--mono);
+    font-size: 10px; color: var(--accent);
+    background: rgba(91,110,245,0.1);
+    border-radius: 5px; padding: 2px 7px;
+    flex-shrink: 0; font-weight: 700;
+  }
+  .faq-chevron {
+    font-size: 16px; color: var(--muted);
+    transition: transform .25s; flex-shrink: 0;
+  }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease, padding .35s ease;
+    padding: 0 20px;
+  }
+  .faq-item.open .faq-a { max-height: 600px; padding: 0 20px 20px; }
+  .faq-a-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+  .faq-a-inner strong { color: var(--text); font-weight: 600; }
+  .faq-a-inner .faq-tag {
+    display: inline-block;
+    background: rgba(34,211,165,0.1);
+    color: var(--accent2);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 0 2px;
+  }
+  .faq-a-inner .faq-tag-amber {
+    background: rgba(245,166,35,0.1);
+    color: var(--accent3);
+  }
+  .faq-a-inner .salary-row {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+  }
+  .salary-badge {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .salary-badge .sb-role { color: var(--muted); font-size: 10px; margin-bottom: 2px; }
+  .salary-badge .sb-val { color: var(--accent2); font-weight: 700; font-family: var(--display); font-size: 13px; }
+
+  /* FAQ hero strip */
+  .faq-hero {
+    background: linear-gradient(135deg, rgba(91,110,245,0.08), rgba(34,211,165,0.06));
+    border: 1px solid rgba(91,110,245,0.2);
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .faq-hero-text h3 { font-family: var(--display); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+  .faq-hero-text p { color: var(--muted); font-size: 14px; max-width: 480px; line-height: 1.6; }
+  .faq-stats { display: flex; gap: 24px; flex-shrink: 0; }
+  .faq-stat { text-align: center; }
+  .faq-stat .fs-num { font-family: var(--display); font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .faq-stat .fs-num span { color: var(--accent); }
+  .faq-stat .fs-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
 
   /* ══════════════════════════════════════
      FLOATING BUTTONS
@@ -266,26 +472,14 @@
   #cursor-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; }
   .cursor-dot { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: background .3s; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); }
   .cursor-ring { position: fixed; width: 36px; height: 36px; border: 2px solid rgba(91,110,245,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .2s, height .2s, border-color .2s; }
-
-  /* ══════════════════════════════════════
-     CURSOR MODE BADGE
-  ══════════════════════════════════════ */
-  #cursor-mode-badge {
-    position: fixed; bottom: 220px; right: 28px; z-index: 998;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; padding: 5px 12px;
-    font-size: 11px; font-weight: 700; color: var(--muted);
-    font-family: var(--mono); letter-spacing: .04em;
-    transition: opacity .4s, color .4s; pointer-events: none;
-  }
-
-  /* BLOCKED overlay */
+  #cursor-mode-badge { position: fixed; bottom: 220px; right: 28px; z-index: 998; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 11px; font-weight: 700; color: var(--muted); font-family: var(--mono); letter-spacing: .04em; transition: opacity .4s, color .4s; pointer-events: none; }
   #blocked-overlay { display: none; position: fixed; inset: 0; background: rgba(13,15,20,0.97); z-index: 99999; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
   #blocked-overlay.show { display: flex; }
   #blocked-overlay .lock-icon { font-size: 60px; animation: pulse 1.5s infinite; }
   #blocked-overlay p { font-family: var(--display); font-size: 1.2rem; color: var(--accent); font-weight: 700; }
   #blocked-overlay small { color: var(--muted); font-size: 13px; }
   @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+  @keyframes spin-ring { to { transform: rotate(360deg); } }
 
   @media (max-width: 768px) {
     .about-wrap { grid-template-columns: 1fr; }
@@ -295,206 +489,202 @@
     .about-skills-grid { grid-template-columns: repeat(2,1fr); }
     .about-stat-row { gap: 16px; flex-wrap: wrap; }
     .about-mini { display: none; }
+    .quote-inner { padding: 28px 22px; }
+    .faq-hero { flex-direction: column; }
   }
-  @media (max-width: 600px) { .hero { padding: 50px 0 40px; } .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .hero { padding: 50px 0 40px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .nav-top { padding: 8px 14px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <canvas id="cursor-canvas"></canvas>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- BLOCKED OVERLAY -->
 <div id="blocked-overlay">
   <div class="lock-icon">🔒</div>
   <p>Access Restricted</p>
   <small id="block-msg">Developer tools are disabled on this page.</small>
 </div>
 
-<!-- CURSOR MODE BADGE -->
 <div id="cursor-mode-badge">✦ Effect 1</div>
 
-<!-- ════════════════════════════════════════
-     NAV — compact + submenus + About mini
-════════════════════════════════════════ -->
+<!-- ════ NAV — REDESIGNED ════ -->
 <nav>
-  <div class="container">
-    <div class="nav-inner">
+  <div class="nav-top">
+    <a href="https://citbd.github.io/WebDevToolkit/" class="logo">
+      <span class="logo-icon">🛠</span>
+      WebDev Toolkit
+    </a>
 
-      <!-- Logo -->
-      <a href="https://citbd.github.io/WebDevToolkit/" class="logo"><span class="logo-dot"></span> WebDev Toolkit</a>
+    <div class="about-mini">
+      <div class="about-avatar-sm">👨‍💻</div>
+      <div>
+        <div class="about-name-sm">Arafat Ahmed</div>
+        <div class="about-role-sm">Faculty · Creative IT</div>
+      </div>
+      <div class="about-contact-sm">
+        <a href="https://wa.me/8801786945337" target="_blank" class="about-btn-sm btn-wa">💬</a>
+        <a href="tel:+8801516010811" class="about-btn-sm btn-call">📞</a>
+        <a href="mailto:arafatahmed.cit.bd@gmail.com" class="about-btn-sm btn-mail">✉</a>
+      </div>
+    </div>
+  </div>
 
-      <!-- About Mini Card (2nd position) -->
-      <div class="about-mini">
-        <div class="about-avatar-sm">👨‍💻</div>
-        <div class="about-info">
-          <span class="about-name-sm">Arafat Ahmed</span>
-          <span class="about-role-sm">Faculty · Creative IT</span>
-        </div>
-        <div class="about-contact-sm">
-          <a href="https://wa.me/8801786945337" target="_blank" class="about-btn-sm btn-wa">💬</a>
-          <a href="tel:+8801516010811" class="about-btn-sm btn-call">📞</a>
-          <a href="mailto:arafatahmed.cit.bd@gmail.com" class="about-btn-sm btn-mail">✉</a>
+  <div class="nav-bottom">
+    <div class="nav-links">
+
+      <div class="nav-item" id="ni-bs">
+        <button onclick="toggleMenu('ni-bs')">🅱 Bootstrap <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#bootstrap"><span class="dd-icon">🎨</span>CSS CDN</a>
+            <a href="#bootstrap"><span class="dd-icon">⚡</span>JS Bundle CDN</a>
+            <a href="#bootstrap"><span class="dd-icon">🧩</span>Bootstrap Examples</a>
+            <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank"><span class="dd-icon">⬇</span>Download</a>
+          </div>
         </div>
       </div>
 
-      <!-- Nav Dropdowns -->
-      <div class="nav-links">
-
-        <div class="nav-item" id="ni-bs">
-          <button onclick="toggleMenu('ni-bs')">🅱 Bootstrap <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#bootstrap">🎨 CSS CDN</a>
-            <a href="#bootstrap">⚡ JS Bundle CDN</a>
-            <a href="#bootstrap">🧩 Bootstrap Examples</a>
-            <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" target="_blank">⬇ Download</a>
+      <div class="nav-item" id="ni-fonts">
+        <button onclick="toggleMenu('ni-fonts')">🔤 Fonts & Icons <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#fonts"><span class="dd-icon">🅱</span>Bootstrap Icons</a>
+            <a href="#fonts"><span class="dd-icon">🔥</span>Font Awesome 6</a>
+            <a href="#fonts"><span class="dd-icon">🔷</span>Material Icons</a>
+            <a href="#fonts"><span class="dd-icon">⚡</span>Ionicons</a>
+            <a href="#fonts"><span class="dd-icon">🅰</span>Google Fonts</a>
+            <a href="#fonts"><span class="dd-icon">🐰</span>Bunny Fonts</a>
           </div>
         </div>
-
-        <div class="nav-item" id="ni-fonts">
-          <button onclick="toggleMenu('ni-fonts')">🔤 Fonts & Icons <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#fonts">🅱 Bootstrap Icons</a>
-            <a href="#fonts">🔥 Font Awesome 6</a>
-            <a href="#fonts">🔷 Material Icons</a>
-            <a href="#fonts">⚡ Ionicons</a>
-            <a href="#fonts">🅰 Google Fonts</a>
-            <a href="#fonts">🐰 Bunny Fonts</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-css">
-          <button onclick="toggleMenu('ni-css')">🎨 CSS Tools <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#css-tools">🔘 CSS Buttons</a>
-            <a href="#css-tools">🔷 CSS Shapes</a>
-            <a href="#css-tools">✅ Checkboxes</a>
-            <a href="#css-tools">🌑 Box Shadow</a>
-            <a href="#css-tools">✂️ Clip-path (Clippy)</a>
-            <a href="https://getcssscan.com/" target="_blank">🌐 getcssscan.com</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-colors">
-          <button onclick="toggleMenu('ni-colors')">🌈 Colors <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#color-tools">🌈 Coolors</a>
-            <a href="#color-tools">🟦 Open Color</a>
-            <a href="#color-tools">💨 Tailwind Palette</a>
-            <a href="#color-tools">🎯 Color Hunt</a>
-            <a href="#color-tools">🎛️ Realtime Colors</a>
-            <a href="#color-tools">🟩 Flat UI Colors</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-anim">
-          <button onclick="toggleMenu('ni-anim')">✨ Animation <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#animation">📜 AOS — Animate on Scroll</a>
-            <a href="#animation">💫 Animate.css</a>
-            <a href="#animation">🎞️ Animista</a>
-            <a href="#animation">🌊 Keyframes.app</a>
-            <a href="#animation">🎭 Magic CSS</a>
-            <a href="#animation">✨ CSS Tricks Animations</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-assets">
-          <button onclick="toggleMenu('ni-assets')">🖼️ Assets <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#illustrations">🖼️ unDraw</a>
-            <a href="#illustrations">📖 Storyset</a>
-            <a href="#illustrations">🧩 ManyPixels</a>
-            <a href="#illustrations">🧍 Open Peeps</a>
-            <a href="#photos">🌄 Pexels</a>
-            <a href="#photos">🏔️ Unsplash</a>
-            <a href="#photos">📸 Pixabay</a>
-            <a href="#photos">🧑‍💻 Pravatar (Avatars)</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-bg">
-          <button onclick="toggleMenu('ni-bg')">🌌 Backgrounds <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#backgrounds">🟣 CSS Gradient</a>
-            <a href="#backgrounds">🔲 Hero Patterns</a>
-            <a href="#backgrounds">🌊 Haikei SVG Waves</a>
-            <a href="#backgrounds">🎨 Mesh Gradient</a>
-            <a href="#backgrounds">🔵 CSS Patterns</a>
-            <a href="#backgrounds">🫧 Glassmorphism</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-code">
-          <button onclick="toggleMenu('ni-code')">📄 Boilerplate &amp; SEO <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#boilerplate">📄 Basic HTML5 Boilerplate</a>
-            <a href="#boilerplate">🅱 Bootstrap 5 Boilerplate</a>
-            <a href="#boilerplate">🚀 Full Pro Boilerplate</a>
-            <a href="#seo">🔎 Essential SEO Tags</a>
-            <a href="#seo">⚙️ HTTP-Equiv Tags</a>
-            <a href="#seo">📱 Open Graph (Social)</a>
-            <a href="#seo">🐦 Twitter Card Tags</a>
-            <a href="#seo">🧩 All SEO Combined</a>
-          </div>
-        </div>
-
-        <div class="nav-item" id="ni-tools">
-          <button onclick="toggleMenu('ni-tools')">🛠 Tools <span class="nav-arrow">▾</span></button>
-          <div class="dropdown">
-            <a href="#tools">📐 Responsive Device</a>
-            <a href="#tools">📖 W3Schools</a>
-            <a href="#tools">🎓 WebCoachBD</a>
-            <a href="#tools">🎨 getcssscan.com</a>
-            <a href="#tools">🧩 Bootstrap Examples</a>
-            <a href="#tools">📁 Folder Structure</a>
-            <a href="#about">👨‍💻 About Instructor</a>
-          </div>
-        </div>
-
       </div>
+
+      <div class="nav-item" id="ni-css">
+        <button onclick="toggleMenu('ni-css')">🎨 CSS Tools <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#css-tools"><span class="dd-icon">🔘</span>CSS Buttons</a>
+            <a href="#css-tools"><span class="dd-icon">🔷</span>CSS Shapes</a>
+            <a href="#css-tools"><span class="dd-icon">✅</span>Checkboxes</a>
+            <a href="#css-tools"><span class="dd-icon">🌑</span>Box Shadow</a>
+            <a href="#css-tools"><span class="dd-icon">✂️</span>Clip-path (Clippy)</a>
+            <a href="https://getcssscan.com/" target="_blank"><span class="dd-icon">🌐</span>getcssscan.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-colors">
+        <button onclick="toggleMenu('ni-colors')">🌈 Colors <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#color-tools"><span class="dd-icon">🌈</span>Coolors</a>
+            <a href="#color-tools"><span class="dd-icon">🟦</span>Open Color</a>
+            <a href="#color-tools"><span class="dd-icon">💨</span>Tailwind Palette</a>
+            <a href="#color-tools"><span class="dd-icon">🎯</span>Color Hunt</a>
+            <a href="#color-tools"><span class="dd-icon">🎛️</span>Realtime Colors</a>
+            <a href="#color-tools"><span class="dd-icon">🟩</span>Flat UI Colors</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-anim">
+        <button onclick="toggleMenu('ni-anim')">✨ Animation <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#animation"><span class="dd-icon">📜</span>AOS — Animate on Scroll</a>
+            <a href="#animation"><span class="dd-icon">💫</span>Animate.css</a>
+            <a href="#animation"><span class="dd-icon">🎞️</span>Animista</a>
+            <a href="#animation"><span class="dd-icon">🌊</span>Keyframes.app</a>
+            <a href="#animation"><span class="dd-icon">🎭</span>Magic CSS</a>
+            <a href="#animation"><span class="dd-icon">✨</span>CSS Tricks</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-assets">
+        <button onclick="toggleMenu('ni-assets')">🖼️ Assets <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#illustrations"><span class="dd-icon">🖼️</span>unDraw</a>
+            <a href="#illustrations"><span class="dd-icon">📖</span>Storyset</a>
+            <a href="#illustrations"><span class="dd-icon">🧩</span>ManyPixels</a>
+            <a href="#illustrations"><span class="dd-icon">🧍</span>Open Peeps</a>
+            <a href="#photos"><span class="dd-icon">🌄</span>Pexels</a>
+            <a href="#photos"><span class="dd-icon">🏔️</span>Unsplash</a>
+            <a href="#photos"><span class="dd-icon">📸</span>Pixabay</a>
+            <a href="#photos"><span class="dd-icon">🧑‍💻</span>Pravatar (Avatars)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-bg">
+        <button onclick="toggleMenu('ni-bg')">🌌 Backgrounds <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#backgrounds"><span class="dd-icon">🟣</span>CSS Gradient</a>
+            <a href="#backgrounds"><span class="dd-icon">🔲</span>Hero Patterns</a>
+            <a href="#backgrounds"><span class="dd-icon">🌊</span>Haikei SVG Waves</a>
+            <a href="#backgrounds"><span class="dd-icon">🎨</span>Mesh Gradient</a>
+            <a href="#backgrounds"><span class="dd-icon">🔵</span>CSS Patterns</a>
+            <a href="#backgrounds"><span class="dd-icon">🫧</span>Glassmorphism</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-code">
+        <button onclick="toggleMenu('ni-code')">📄 Boilerplate <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#boilerplate"><span class="dd-icon">📄</span>Basic HTML5 Boilerplate</a>
+            <a href="#boilerplate"><span class="dd-icon">🅱</span>Bootstrap 5 Boilerplate</a>
+            <a href="#boilerplate"><span class="dd-icon">🚀</span>Full Pro Boilerplate</a>
+            <a href="#seo"><span class="dd-icon">🔎</span>Essential SEO Tags</a>
+            <a href="#seo"><span class="dd-icon">⚙️</span>HTTP-Equiv Tags</a>
+            <a href="#seo"><span class="dd-icon">📱</span>Open Graph (Social)</a>
+            <a href="#seo"><span class="dd-icon">🐦</span>Twitter Card Tags</a>
+            <a href="#seo"><span class="dd-icon">🧩</span>All SEO Combined</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-tools">
+        <button onclick="toggleMenu('ni-tools')">🛠 Tools <span class="nav-arrow">▾</span></button>
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <a href="#tools"><span class="dd-icon">📐</span>Responsive Device</a>
+            <a href="#tools"><span class="dd-icon">📖</span>W3Schools</a>
+            <a href="#tools"><span class="dd-icon">🎓</span>WebCoachBD</a>
+            <a href="#tools"><span class="dd-icon">🎨</span>getcssscan.com</a>
+            <a href="#tools"><span class="dd-icon">🧩</span>Bootstrap Examples</a>
+            <a href="#tools"><span class="dd-icon">📁</span>Folder Structure</a>
+            <a href="#about"><span class="dd-icon">👨‍💻</span>About Instructor</a>
+            <a href="#faq"><span class="dd-icon">❓</span>FAQ</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item" id="ni-faq">
+        <button onclick="location.href='#faq'">❓ FAQ <span class="nav-dot"></span></button>
+      </div>
+
     </div>
   </div>
 </nav>
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
+<!-- ════ HERO ════ -->
 <div class="hero">
   <div class="container">
-    <p class="hero-eyebrow">🎓 Student Resource Hub</p>
-    <h1>Everything you need to<br><span>build websites — fast.</span></h1>
+    <p class="hero-eyebrow">🎓 <br> Student Resource Hub </p>
+    <h1>Everything you need to<br><span>build websites — fast.<br>Learn. Build. Get Hired.</span></h1>
     <p>CDN links, boilerplates, image sources, fonts, icons — all in one place. Copy, paste, build.</p>
     <div class="hero-badges">
-      <span class="badge">Bootstrap 5</span>
-      <span class="badge">Font Awesome 6</span>
-      <span class="badge">Google Fonts</span>
-      <span class="badge">Bootstrap Icons</span>
-      <span class="badge">Material Icons</span>
-      <span class="badge">Ionicons</span>
-      <span class="badge">Bunny Fonts</span>
-      <span class="badge">HTML Boilerplate</span>
-      <span class="badge">SEO Tags</span>
-      <span class="badge">CSS Buttons</span>
-      <span class="badge">CSS Shapes</span>
-      <span class="badge">CSS Box Shadow</span>
-      <span class="badge">Color Tools</span>
-      <span class="badge">AOS</span>
-      <span class="badge">Animate.css</span>
-      <span class="badge">unDraw</span>
-      <span class="badge">Storyset</span>
-      <span class="badge">ManyPixels</span>
-      <span class="badge">Open Peeps</span>
-      <span class="badge">Pexels</span>
-      <span class="badge">Unsplash</span>
-      <span class="badge">CSS Clip-path</span>
-      <span class="badge">Bootstrap Examples</span>
-      <span class="badge">Realtime Colors</span>
-      <span class="badge">Flat UI Colors</span>
-      <span class="badge">CSS Animations</span>
-      <span class="badge">CSS Backgrounds</span>
+      <span class="badge">Bootstrap 5</span><span class="badge">Font Awesome 6</span><span class="badge">Google Fonts</span><span class="badge">Bootstrap Icons</span><span class="badge">Material Icons</span><span class="badge">Ionicons</span><span class="badge">Bunny Fonts</span><span class="badge">HTML Boilerplate</span><span class="badge">SEO Tags</span><span class="badge">CSS Buttons</span><span class="badge">CSS Shapes</span><span class="badge">CSS Box Shadow</span><span class="badge">Color Tools</span><span class="badge">AOS</span><span class="badge">Animate.css</span><span class="badge">unDraw</span><span class="badge">Storyset</span><span class="badge">ManyPixels</span><span class="badge">Open Peeps</span><span class="badge">Pexels</span><span class="badge">Unsplash</span><span class="badge">CSS Clip-path</span><span class="badge">Bootstrap Examples</span><span class="badge">Realtime Colors</span><span class="badge">Flat UI Colors</span><span class="badge">CSS Animations</span><span class="badge">CSS Backgrounds</span>
     </div>
   </div>
 </div>
@@ -513,64 +703,31 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     ABOUT SECTION (compact)
-════════════════════════════════════════ -->
+<!-- ════ ABOUT ════ -->
 <section id="about">
   <div class="container">
     <div class="about-wrap">
-
-      <!-- LEFT: Avatar -->
       <div class="about-avatar-col">
         <div class="avatar-ring">
           <div class="avatar-img">👨‍💻</div>
         </div>
         <div class="avatar-badges" style="width:180px;">
-          <div class="avatar-badge">
-            <span class="ab-icon">🏫</span>
-            <div><div class="ab-label">Institute</div><div class="ab-val">Creative IT</div></div>
-          </div>
-          <div class="avatar-badge">
-            <span class="ab-icon">💼</span>
-            <div><div class="ab-label">Role</div><div class="ab-val">Faculty Member</div></div>
-          </div>
-          <div class="avatar-badge">
-            <span class="ab-icon">📍</span>
-            <div><div class="ab-label">Location</div><div class="ab-val">Bangladesh 🇧🇩</div></div>
-          </div>
+          <div class="avatar-badge"><span class="ab-icon">🏫</span><div><div class="ab-label">Institute</div><div class="ab-val">Creative IT</div></div></div>
+          <div class="avatar-badge"><span class="ab-icon">💼</span><div><div class="ab-label">Role</div><div class="ab-val">Faculty Member</div></div></div>
+          <div class="avatar-badge"><span class="ab-icon">📍</span><div><div class="ab-label">Location</div><div class="ab-val">Bangladesh 🇧🇩</div></div></div>
         </div>
       </div>
-
-      <!-- RIGHT: Content -->
       <div class="about-content">
         <p class="about-eyebrow">👋 Meet Your Instructor</p>
         <h2 class="about-name">Arafat <span class="name-accent">Ahmed</span></h2>
-        <div class="about-role">
-          <span class="dot-live"></span>
-          Faculty Member · Web &amp; Software Department
-        </div>
-        <div class="institute-tag">
-          🎓 Creative IT Institute — Web &amp; Software Department
-        </div>
-        <p class="about-bio">
-          আমি <strong>Arafat Ahmed</strong> — Creative IT Institute-এর Web &amp; Software Department-এর একজন Faculty Member। আমি শিক্ষার্থীদের <strong>HTML, CSS, JavaScript, Bootstrap</strong> এবং আধুনিক web development শেখাই। এই toolkit সাইটটি আমার ছাত্রছাত্রীদের জন্য তৈরি — যাতে তারা সব resource এক জায়গায় পান।
-        </p>
-
+        <div class="about-role"><span class="dot-live"></span>Web &amp; Full Stack Web Engineer</div>
+        <div class="institute-tag">🎓 Creative IT Institute — Faculty Member · Web &amp; Software Department</div>
+        <p class="about-bio">আমি <strong>Arafat Ahmed</strong> — Creative IT Institute-এর Web &amp; Software Department-এর একজন Faculty Member। আমি শিক্ষার্থীদের <strong>HTML, CSS, JavaScript, Bootstrap</strong> এবং আধুনিক web development শেখাই। এই toolkit সাইটটি আমার ছাত্রছাত্রীদের জন্য তৈরি — যাতে তারা সব resource এক জায়গায় পান।</p>
         <div class="about-stat-row">
-          <div class="about-stat">
-            <div class="as-num">10<span>+</span></div>
-            <div class="as-label">Years Teaching</div>
-          </div>
-          <div class="about-stat">
-            <div class="as-num">500<span>+</span></div>
-            <div class="as-label">Students Trained</div>
-          </div>
-          <div class="about-stat">
-            <div class="as-num">7<span>+</span></div>
-            <div class="as-label">Courses Taught</div>
-          </div>
+          <div class="about-stat"><div class="as-num">10<span>+</span></div><div class="as-label">Years Teaching</div></div>
+          <div class="about-stat"><div class="as-num">500<span>+</span></div><div class="as-label">Students Trained</div></div>
+          <div class="about-stat"><div class="as-num">7<span>+</span></div><div class="as-label">Courses Taught</div></div>
         </div>
-
         <div class="about-skills-grid">
           <div class="skill-pill"><span class="sp-label">Frontend</span><span class="sp-name">HTML / CSS</span></div>
           <div class="skill-pill"><span class="sp-label">Framework</span><span class="sp-name">Bootstrap 5</span></div>
@@ -579,21 +736,232 @@
           <div class="skill-pill"><span class="sp-label">Design</span><span class="sp-name">Figma / UI</span></div>
           <div class="skill-pill"><span class="sp-label">Version Control</span><span class="sp-name">Git / GitHub</span></div>
         </div>
-
         <div class="btn-row">
           <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
           <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
           <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Email</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ QUOTE SECTION ════ -->
+<section id="quote-section">
+  <div class="container">
+    <div class="quote-inner">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">
+        কনসিস্টেন্সি ধরে রাখার সবচেয়ে প্র্যাকটিক্যাল নিয়ম হলো কখনোই <span class="highlight">টানা দুই দিন কোডিং বা শেখা থেকে বিরতি না নেওয়া।</span> মানুষ হিসেবে আমাদের অসুস্থতা আসতে পারে বা ইমার্জেন্সি কাজ থাকতে পারে। একদিন গ্যাপ দেওয়াটা খুব স্বাভাবিক একটি প্রক্রিয়া। কিন্তু <span class="highlight-amber">টানা দুই দিন গ্যাপ দিলে ব্রেইন নতুন একটি আনপ্রোডাক্টিভ প্যাটার্ন তৈরি করে ফেলে।</span>
+        <br><br>
+        এই নিয়মের ট্রেডঅফ হলো, যেদিন আপনার একদমই সময় নেই, সেদিনও অন্তত <span class="highlight">১০ মিনিট সময় বের করে ডকুমেন্টেশন পড়তে হবে</span> বা আগের কোড রিভিউ করতে হবে। এই ১০ মিনিটে আপনি নতুন কোনো প্রজেক্ট দাঁড় করাতে পারবেন না, যা সাময়িকভাবে হতাশাজনক মনে হতে পারে। তবে এই ছোট অভ্যাসটি আপনার <span class="highlight">প্রোডাক্টিভ আইডেন্টিটি ধরে রাখে</span> এবং লম্বা বিরতির পর কাজে ফেরার যে জড়তা, সেটা থেকে বাঁচায়।
+      </p>
+      <div class="quote-rule"></div>
+      <div class="quote-tagline">
+        <div class="quote-author">
+          <div class="quote-author-avatar">👨‍💻</div>
+          <div>
+            <div class="quote-author-name">Arafat Ahmed</div>
+            <div class="quote-author-role">Faculty · Creative IT Institute</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ SECTION ════ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-eyebrow">Your Questions, Answered</p>
+      <h2 class="sec-title">❓ Web Design — FAQ</h2>
+      <p class="sec-sub">নতুন শিক্ষার্থীদের সবচেয়ে কমন প্রশ্নগুলোর সৎ ও বিস্তারিত উত্তর।</p>
+    </div>
+
+    <div class="faq-hero">
+      <div class="faq-hero-text">
+        <h3>Web Design কি তোমার জন্য?</h3>
+        <p>যদি তুমি কম্পিউটারে কাজ করতে পছন্দ করো, সুন্দর জিনিস তৈরি করতে ভালো লাগে, আর ঘরে বসে আয় করতে চাও — তাহলে Web Design তোমার জন্যই।</p>
+      </div>
+      <div class="faq-stats">
+        <div class="faq-stat"><div class="fs-num">3<span>M+</span></div><div class="fs-label">Global Job Openings</div></div>
+        <div class="faq-stat"><div class="fs-num">৳80<span>K+</span></div><div class="fs-label">Avg Monthly (BD)</div></div>
+        <div class="faq-stat"><div class="fs-num">6<span>mo</span></div><div class="fs-label">To First Freelance Job</div></div>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">01</span>
+          <span class="faq-q-text">ওয়েব ডিজাইন আসলে কী? সহজ ভাষায় বলো।</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          ওয়েব ডিজাইন হলো <strong>ইন্টারনেটে যে ওয়েবসাইটগুলো দেখো, সেগুলো তৈরি করার দক্ষতা।</strong> যখন তুমি Google-এ ঢোকো, কোনো ই-কমার্স সাইটে শপিং করো, বা ফেসবুক স্ক্রোল করো — এই সবকিছু কেউ না কেউ তৈরি করেছে। সেই মানুষগুলোই ওয়েব ডিজাইনার।<br><br>
+          মূলত তিনটি জিনিস শিখতে হয়: <span class="faq-tag">HTML</span> (ওয়েবের কাঠামো), <span class="faq-tag">CSS</span> (সৌন্দর্য ও রং), আর <span class="faq-tag">JavaScript</span> (জীবন্ত করে তোলা)। এই তিনটি মিলেই একটি ওয়েবসাইট।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">02</span>
+          <span class="faq-q-text">কেন ওয়েব ডিজাইন শিখবো? এত কিছু থাকতে?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>কারণটা সহজ — পৃথিবীর প্রতিটি ব্যবসা এখন অনলাইনে।</strong> ছোট চায়ের দোকান থেকে শুরু করে বিশাল কর্পোরেশন — সবার ওয়েবসাইট দরকার। আর সেই ওয়েবসাইট বানাতে মানুষ চাই।<br><br>
+          আরো বড় কারণ হলো <span class="faq-tag faq-tag-amber">ফ্রিল্যান্সিং।</span> Fiverr, Upwork-এ একজন ভালো ওয়েব ডিজাইনার মাসে $500–$3000 পর্যন্ত আয় করতে পারে — ঘরে বসে, নিজের সময়ে। বাংলাদেশে এই স্কিল এখন সোনার চেয়েও দামি।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">03</span>
+          <span class="faq-q-text">ওয়েব ডিজাইনের ভবিষ্যৎ কেমন? এটা কি টিকবে?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>শুধু টিকবে না — আরো বাড়বে।</strong> ২০৩০ সালের মধ্যে বিশ্বে ওয়েব ডেভেলপারের চাহিদা ১৬% বৃদ্ধি পাবে বলে পূর্বাভাস দেওয়া হয়েছে। AI আসছে, কিন্তু AI-কেও বলতে হবে কী বানাতে হবে — সেটা তুমিই বলবে।<br><br>
+          বর্তমান বেতন রেঞ্জ (বাংলাদেশ):
+          <div class="salary-row">
+            <div class="salary-badge"><div class="sb-role">Junior</div><div class="sb-val">৳25K–50K</div></div>
+            <div class="salary-badge"><div class="sb-role">Mid-level</div><div class="sb-val">৳50K–100K</div></div>
+            <div class="salary-badge"><div class="sb-role">Senior</div><div class="sb-val">৳100K–200K+</div></div>
+            <div class="salary-badge"><div class="sb-role">Freelance</div><div class="sb-val">Unlimited 🚀</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">04</span>
+          <span class="faq-q-text">কতটা কঠিন? একদম নতুন হলে পারবো?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>সত্যি কথা হলো — শুরুটা সহজ, কিন্তু মাস্টার হতে সময় লাগে।</strong> প্রথম সপ্তাহেই তুমি নিজের নাম দিয়ে একটি পেজ বানাতে পারবে। এটা দেখতে পাবে, অনুভব করতে পারবে — এই satisfaction অনেক বড়।<br><br>
+          তুলনা করলে: <span class="faq-tag">HTML/CSS</span> শেখা ড্রাইভিং শেখার মতো। একটু কঠিন লাগে, কিন্তু একবার পারলে ভুলবে না। Programming-এর মতো গণিত-ভিত্তিক না, তাই arts background-এর স্টুডেন্টরাও দারুণ করছে। <strong>সবচেয়ে বড় বাধা হলো ধৈর্য না রাখা — কোডিং ছেড়ে দেওয়া নয়।</strong>
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">05</span>
+          <span class="faq-q-text">কোথা থেকে শুরু করবো? রোডম্যাপ কী?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          সহজ রোডম্যাপ এভাবে ভাবো:<br><br>
+          <span class="faq-tag">Step 1</span> <strong>HTML</strong> — ওয়েবের ভাষা শেখো (২–৩ সপ্তাহ)<br>
+          <span class="faq-tag">Step 2</span> <strong>CSS</strong> — সুন্দর করো (৩–৪ সপ্তাহ)<br>
+          <span class="faq-tag">Step 3</span> <strong>Bootstrap 5</strong> — দ্রুত বানাও (২ সপ্তাহ)<br>
+          <span class="faq-tag">Step 4</span> <strong>JavaScript</strong> — জীবন্ত করো (১–২ মাস)<br>
+          <span class="faq-tag faq-tag-amber">Step 5</span> <strong>প্রজেক্ট বানাও</strong> — Portfolio তৈরি করো<br>
+          <span class="faq-tag faq-tag-amber">Step 6</span> <strong>Freelancing শুরু করো!</strong><br><br>
+          এই ৬টি স্টেপ মাত্র <strong>৪–৬ মাসে</strong> সম্পন্ন করা সম্ভব।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">06</span>
+          <span class="faq-q-text">AI কি ওয়েব ডিজাইনারদের চাকরি নিয়ে নেবে?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>না — বরং AI ওয়েব ডিজাইনারদের আরো শক্তিশালী করবে।</strong> ChatGPT কোড লিখতে পারে, কিন্তু ক্লায়েন্টের সাথে কথা বলতে পারে না, তাদের ব্যবসা বুঝতে পারে না, creative decision নিতে পারে না।<br><br>
+          বরং <span class="faq-tag">AI জানা ডিজাইনার</span> আর <span class="faq-tag faq-tag-amber">AI না-জানা ডিজাইনার</span> — এই দুই ভাগ হবে। AI ব্যবহার করে একজন ডিজাইনার এখন ৫ জনের কাজ একা করতে পারছে। তাই AI শেখো, ভয় পেও না।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">07</span>
+          <span class="faq-q-text">ফ্রিল্যান্সিং কীভাবে শুরু করবো?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>Portfolio ছাড়া ফ্রিল্যান্সিং শুরু করা যায় না।</strong> তাই প্রথমে ৩–৫টি নিজের প্রজেক্ট বানাও — যেমন একটি restaurant website, একটি portfolio page, একটি landing page।<br><br>
+          তারপর: <span class="faq-tag">Fiverr</span>-এ gig খোলো → প্রথমে কম দামে কাজ করো → ভালো রিভিউ সংগ্রহ করো → দাম বাড়াও। অনেকে Creative IT থেকে course শেষে মাত্র ৩ মাসেই প্রথম $50 ডলার আয় করেছে। তুমিও পারবে।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">08</span>
+          <span class="faq-q-text">কম্পিউটার বা ইন্টারনেট না থাকলে কি শিখতে পারবো?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>কম্পিউটার লাগবেই — কিন্তু হাই-কনফিগারেশন লাগবে না।</strong> যেকোনো পুরনো laptop বা desktop-এ web development করা যায়। একটি notepad আর browser থাকলেই শুরু করা সম্ভব।<br><br>
+          ইন্টারনেট? হ্যাঁ লাগবে, কিন্তু সবসময় নয়। Code লেখা offline-এ করা যায়। তাই যদি ব্যবস্থা একটু সীমিতও হয়, হতাশ হোয়ো না — <span class="faq-tag">শুরু করার ইচ্ছাটাই সবচেয়ে বড় resource।</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">09</span>
+          <span class="faq-q-text">ওয়েব ডিজাইন কি শুধু ছেলেদের জন্য?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>একদম না।</strong> Tech industry-তে নারীরা দারুণ করছেন — এবং design-এ তারা প্রায়ই বেশি সফল, কারণ design এর জন্য creativity ও empathy দরকার। বাংলাদেশে অনেক নারী ওয়েব ডিজাইনার এখন ঘরে বসেই মাসে হাজার হাজার টাকা আয় করছেন।<br><br>
+          <strong>Web design হলো সেই স্কিল যা লিঙ্গ, বয়স বা background বিচার করে না — শুধু skill বিচার করে।</strong> এটাই এই পেশার সবচেয়ে সুন্দর দিক।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">10</span>
+          <span class="faq-q-text">Web Design আর Web Development কি আলাদা?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>হ্যাঁ, কিন্তু এখন দুটো মিলে যাচ্ছে।</strong><br><br>
+          <span class="faq-tag">Web Design</span> — কীভাবে দেখাবে: রং, লেআউট, ফন্ট, UX।<br>
+          <span class="faq-tag faq-tag-amber">Web Development</span> — কীভাবে কাজ করবে: code, database, server।<br><br>
+          তুমি যখন HTML/CSS শিখছো, তখন দুটোর মাঝামাঝি কাজ করছো — এটাকে বলে <strong>Frontend Development।</strong> এটাই সবচেয়ে চাহিদাসম্পন্ন এবং শেখার জন্য সবচেয়ে সহজ entry point।
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">11</span>
+          <span class="faq-q-text">শেখার পর কোথায় কাজ করতে পারবো?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          অনেক সুযোগ আছে:<br><br>
+          <span class="faq-tag">IT Company</span> — Dhaka, Chittagong-এ হাজারো tech company Junior Developer নিচ্ছে।<br>
+          <span class="faq-tag">Freelancing</span> — Fiverr, Upwork, Toptal — বিশ্বের যেকোনো ক্লায়েন্টের সাথে কাজ।<br>
+          <span class="faq-tag faq-tag-amber">Remote Job</span> — বাংলাদেশে বসে বিদেশী company-তে full-time job।<br>
+          <span class="faq-tag faq-tag-amber">নিজের Business</span> — Local business-দের ওয়েবসাইট বানিয়ে দাও।<br><br>
+          <strong>Creative IT থেকে শেখা অনেক student এখন ইউরোপ-আমেরিকার কোম্পানিতে remote-এ কাজ করছে।</strong>
+        </div></div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-num">12</span>
+          <span class="faq-q-text">আমি কি ঘরে বসে শিখতে পারবো?</span>
+          <span class="faq-chevron">▾</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>হ্যাঁ — ইন্টারনেট সংযোগ থাকলে তুমি বিশ্বের সেরা resources-এ access পাও।</strong> YouTube, W3Schools, freeCodeCamp — সব বিনামূল্যে। কিন্তু guided learning সবসময় দ্রুত।<br><br>
+          একজন instructor থাকলে ভুল হলে সাথে সাথে ধরিয়ে দেওয়া যায়, সঠিক দিকে নিয়ে যাওয়া যায়। নিজে নিজে শিখলে অনেক সময় ভুল pattern তৈরি হয়।<br><br>
+          তাই ideal হলো: <span class="faq-tag">class করো</span> + <span class="faq-tag faq-tag-amber">ঘরে practice করো</span> = দ্রুততম শেখা।
+        </div></div>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     BOOTSTRAP
-════════════════════════════════════════ -->
+<!-- ════ BOOTSTRAP ════ -->
 <section id="bootstrap">
   <div class="container">
     <div class="sec-header">
@@ -643,9 +1011,7 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     FONTS & ICONS
-════════════════════════════════════════ -->
+<!-- ════ FONTS & ICONS ════ -->
 <section id="fonts">
   <div class="container">
     <div class="sec-header">
@@ -658,73 +1024,39 @@
       <div class="card">
         <div class="card-icon">🅱</div>
         <div class="card-title">Bootstrap Icons</div>
-        <div class="card-sub">2,000+ open source icons. Add to <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code>.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;</code>
-        </div>
+        <div class="card-sub">2,000+ open source icons.</div>
+        <div class="code-block"><div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">Usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;i class="bi bi-house"&gt;&lt;/i&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://icons.getbootstrap.com/" target="_blank" class="btn btn-primary">Browse →</a>
-          <a href="https://github.com/twbs/icons/releases/" target="_blank" class="btn btn-amber">⬇ Download</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;i class="bi bi-house"&gt;&lt;/i&gt;</code></div>
+        <div class="btn-row"><a href="https://icons.getbootstrap.com/" target="_blank" class="btn btn-primary">Browse →</a><a href="https://github.com/twbs/icons/releases/" target="_blank" class="btn btn-amber">⬇</a></div>
       </div>
       <div class="card">
         <div class="card-icon">🔥</div>
         <div class="card-title">Font Awesome 6</div>
-        <div class="card-sub">The iconic SVG & font framework. Add to <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code>.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"&gt;</code>
-        </div>
+        <div class="card-sub">The iconic SVG & font framework.</div>
+        <div class="code-block"><div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">Usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://fontawesome.com/search?ic=free-collection" target="_blank" class="btn btn-primary">Browse Free →</a>
-          <a href="https://fontawesome.com/download" target="_blank" class="btn btn-amber">⬇ Download</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;</code></div>
+        <div class="btn-row"><a href="https://fontawesome.com/search?ic=free-collection" target="_blank" class="btn btn-primary">Browse →</a><a href="https://fontawesome.com/download" target="_blank" class="btn btn-amber">⬇</a></div>
       </div>
       <div class="card">
         <div class="card-icon">🔷</div>
         <div class="card-title">Google Material Icons</div>
-        <div class="card-sub">Official Material Design icons. Add to <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code>.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"&gt;</code>
-        </div>
+        <div class="card-sub">Official Material Design icons.</div>
+        <div class="code-block"><div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">Usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://fonts.google.com/icons" target="_blank" class="btn btn-primary">Browse Icons →</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;</code></div>
+        <div class="btn-row"><a href="https://fonts.google.com/icons" target="_blank" class="btn btn-primary">Browse →</a></div>
       </div>
       <div class="card">
         <div class="card-icon">⚡</div>
         <div class="card-title">Ionicons</div>
-        <div class="card-sub">Premium icons for web, iOS, Android & desktop. Add before <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;/body&gt;</code>.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"&gt;&lt;/script&gt;
-&lt;script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"&gt;&lt;/script&gt;</code>
-        </div>
+        <div class="card-sub">Premium icons for web & mobile.</div>
+        <div class="code-block"><div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"&gt;&lt;/script&gt;
+&lt;script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"&gt;&lt;/script&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">Usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;ion-icon name="home"&gt;&lt;/ion-icon&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://ionic.io/ionicons" target="_blank" class="btn btn-primary">Browse Icons →</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;ion-icon name="home"&gt;&lt;/ion-icon&gt;</code></div>
+        <div class="btn-row"><a href="https://ionic.io/ionicons" target="_blank" class="btn btn-primary">Browse →</a></div>
       </div>
     </div>
     <div class="divider"></div>
@@ -733,49 +1065,31 @@
       <div class="card">
         <div class="card-icon">🅰</div>
         <div class="card-title">Google Fonts CDN</div>
-        <div class="card-sub">Example: Roboto + Open Sans. Replace with your chosen font from fonts.google.com.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+        <div class="card-sub">Example: Roboto + Open Sans.</div>
+        <div class="code-block"><div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"&gt;</code>
-        </div>
+&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">CSS usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>body { font-family: 'Roboto', sans-serif; }
-h1   { font-family: 'Open Sans', sans-serif; }</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://fonts.google.com" target="_blank" class="btn btn-primary">Browse Fonts →</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>body { font-family: 'Roboto', sans-serif; }
+h1   { font-family: 'Open Sans', sans-serif; }</code></div>
+        <div class="btn-row"><a href="https://fonts.google.com" target="_blank" class="btn btn-primary">Browse Fonts →</a></div>
       </div>
       <div class="card">
         <div class="card-icon">🐰</div>
         <div class="card-title">Bunny Fonts CDN</div>
-        <div class="card-sub">Privacy-friendly Google Fonts alternative. Same fonts, GDPR-compliant, no tracking.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="preconnect" href="https://fonts.bunny.net"&gt;
-&lt;link href="https://fonts.bunny.net/css?family=roboto:400,700|open-sans:400,600&display=swap" rel="stylesheet"&gt;</code>
-        </div>
+        <div class="card-sub">Privacy-friendly Google Fonts alternative. GDPR-compliant, no tracking.</div>
+        <div class="code-block"><div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="preconnect" href="https://fonts.bunny.net"&gt;
+&lt;link href="https://fonts.bunny.net/css?family=roboto:400,700|open-sans:400,600&display=swap" rel="stylesheet"&gt;</code></div>
         <div class="card-sub" style="margin-top:12px">CSS usage:</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>body { font-family: 'Roboto', sans-serif; }
-h1   { font-family: 'Open Sans', sans-serif; }</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://fonts.bunny.net/" target="_blank" class="btn btn-primary">Browse Fonts →</a>
-        </div>
+        <div class="code-block"><div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>body { font-family: 'Roboto', sans-serif; }
+h1   { font-family: 'Open Sans', sans-serif; }</code></div>
+        <div class="btn-row"><a href="https://fonts.bunny.net/" target="_blank" class="btn btn-primary">Browse Fonts →</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     CSS TOOLS
-════════════════════════════════════════ -->
+<!-- ════ CSS TOOLS ════ -->
 <section id="css-tools">
   <div class="container">
     <div class="sec-header">
@@ -784,65 +1098,23 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
       <p class="sec-sub">Copy ready-made CSS components — buttons, shapes, checkboxes, box shadows, clip-paths and more.</p>
     </div>
     <div class="grid-4">
-      <div class="card">
-        <div class="card-icon">🔘</div>
-        <div class="card-title">CSS Buttons</div>
-        <div class="card-sub">100+ beautiful CSS button styles — copy and paste directly into your project.</div>
-        <div class="btn-row">
-          <a href="https://getcssscan.com/css-buttons-examples" target="_blank" class="btn btn-primary">Browse Buttons →</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔷</div>
-        <div class="card-title">CSS Shapes</div>
-        <div class="card-sub">Pure CSS shapes — triangles, circles, stars, arrows and more. No images needed.</div>
-        <div class="btn-row">
-          <a href="https://getcssscan.com/css-shapes" target="_blank" class="btn btn-primary">Browse Shapes →</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">✅</div>
-        <div class="card-title">CSS Checkboxes</div>
-        <div class="card-sub">Custom CSS checkbox styles to replace boring default browser checkboxes instantly.</div>
-        <div class="btn-row">
-          <a href="https://getcssscan.com/css-checkboxes-examples" target="_blank" class="btn btn-primary">Browse Checkboxes →</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌑</div>
-        <div class="card-title">CSS Box Shadow</div>
-        <div class="card-sub">93 beautiful box-shadow examples. Copy the CSS and paste it into any element.</div>
-        <div class="btn-row">
-          <a href="https://getcssscan.com/css-box-shadow-examples" target="_blank" class="btn btn-primary">Browse Shadows →</a>
-        </div>
-      </div>
+      <div class="card"><div class="card-icon">🔘</div><div class="card-title">CSS Buttons</div><div class="card-sub">100+ beautiful CSS button styles.</div><div class="btn-row"><a href="https://getcssscan.com/css-buttons-examples" target="_blank" class="btn btn-primary">Browse →</a></div></div>
+      <div class="card"><div class="card-icon">🔷</div><div class="card-title">CSS Shapes</div><div class="card-sub">Pure CSS shapes — triangles, circles, stars.</div><div class="btn-row"><a href="https://getcssscan.com/css-shapes" target="_blank" class="btn btn-primary">Browse →</a></div></div>
+      <div class="card"><div class="card-icon">✅</div><div class="card-title">CSS Checkboxes</div><div class="card-sub">Custom CSS checkbox styles instantly.</div><div class="btn-row"><a href="https://getcssscan.com/css-checkboxes-examples" target="_blank" class="btn btn-primary">Browse →</a></div></div>
+      <div class="card"><div class="card-icon">🌑</div><div class="card-title">CSS Box Shadow</div><div class="card-sub">93 beautiful box-shadow examples.</div><div class="btn-row"><a href="https://getcssscan.com/css-box-shadow-examples" target="_blank" class="btn btn-primary">Browse →</a></div></div>
       <div class="card">
         <div class="card-icon">✂️</div>
         <div class="card-title">CSS Clip-path — Clippy</div>
-        <div class="card-sub">Visual clip-path maker by Bennett Feely. Create any polygon, circle or ellipse shape.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>clip-path: polygon(50% 0%, 0% 100%, 100% 100%);</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://bennettfeely.com/clippy/" target="_blank" class="btn btn-primary">Open Clippy →</a>
-        </div>
+        <div class="card-sub">Visual clip-path maker by Bennett Feely.</div>
+        <div class="code-block"><div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>clip-path: polygon(50% 0%, 0% 100%, 100% 100%);</code></div>
+        <div class="btn-row"><a href="https://bennettfeely.com/clippy/" target="_blank" class="btn btn-primary">Open Clippy →</a></div>
       </div>
-      <div class="card">
-        <div class="card-icon">🌐</div>
-        <div class="card-title">getcssscan.com</div>
-        <div class="card-sub">All CSS tools in one place — buttons, shapes, checkboxes, box shadows, gradients and more.</div>
-        <div class="btn-row">
-          <a href="https://getcssscan.com/" target="_blank" class="btn btn-primary">Visit →</a>
-        </div>
-      </div>
+      <div class="card"><div class="card-icon">🌐</div><div class="card-title">getcssscan.com</div><div class="card-sub">All CSS tools in one place.</div><div class="btn-row"><a href="https://getcssscan.com/" target="_blank" class="btn btn-primary">Visit →</a></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     COLOR TOOLS
-════════════════════════════════════════ -->
+<!-- ════ COLOR TOOLS ════ -->
 <section id="color-tools">
   <div class="container">
     <div class="sec-header">
@@ -851,259 +1123,101 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
       <p class="sec-sub">Pick perfect color palettes and systems for your projects — all free.</p>
     </div>
     <div class="grid-4">
-      <div class="card">
-        <div class="card-icon">🌈</div>
-        <div class="card-title">Coolors</div>
-        <div class="card-sub">Generate beautiful color palettes instantly. Lock colors you love and shuffle the rest.</div>
-        <div class="btn-row"><a href="https://coolors.co/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🟦</div>
-        <div class="card-title">Open Color</div>
-        <div class="card-sub">Open-source color system optimized for UI design. Consistent, accessible color scales.</div>
-        <div class="btn-row"><a href="https://yeun.github.io/open-color/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">💨</div>
-        <div class="card-title">Tailwind Color Palette</div>
-        <div class="card-sub">Tailwind CSS's full default color palette with hex codes — perfect reference for any project.</div>
-        <div class="btn-row"><a href="https://tailwindcss.com/docs/customizing-colors" target="_blank" class="btn btn-primary">View Palette →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎯</div>
-        <div class="card-title">Color Hunt</div>
-        <div class="card-sub">Thousands of hand-picked ready-made color combinations. Browse and copy hex codes.</div>
-        <div class="btn-row"><a href="https://colorhunt.co/" target="_blank" class="btn btn-primary">Browse Colors →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎛️</div>
-        <div class="card-title">Realtime Colors</div>
-        <div class="card-sub">Preview your color palette on a real UI in realtime. Perfect for choosing website colors.</div>
-        <div class="btn-row"><a href="https://www.realtimecolors.com/" target="_blank" class="btn btn-primary">Try Now →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🟩</div>
-        <div class="card-title">Flat UI Colors</div>
-        <div class="card-sub">280 handpicked flat colors in 13 popular palettes. Copy HEX, RGB, or CSS variables instantly.</div>
-        <div class="btn-row"><a href="https://flatuicolors.com/" target="_blank" class="btn btn-primary">Browse Colors →</a></div>
-      </div>
+      <div class="card"><div class="card-icon">🌈</div><div class="card-title">Coolors</div><div class="card-sub">Generate beautiful color palettes instantly.</div><div class="btn-row"><a href="https://coolors.co/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">🟦</div><div class="card-title">Open Color</div><div class="card-sub">Open-source color system for UI design.</div><div class="btn-row"><a href="https://yeun.github.io/open-color/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">💨</div><div class="card-title">Tailwind Color Palette</div><div class="card-sub">Tailwind's full default color palette.</div><div class="btn-row"><a href="https://tailwindcss.com/docs/customizing-colors" target="_blank" class="btn btn-primary">View →</a></div></div>
+      <div class="card"><div class="card-icon">🎯</div><div class="card-title">Color Hunt</div><div class="card-sub">Thousands of hand-picked color combinations.</div><div class="btn-row"><a href="https://colorhunt.co/" target="_blank" class="btn btn-primary">Browse →</a></div></div>
+      <div class="card"><div class="card-icon">🎛️</div><div class="card-title">Realtime Colors</div><div class="card-sub">Preview palette on a real UI in realtime.</div><div class="btn-row"><a href="https://www.realtimecolors.com/" target="_blank" class="btn btn-primary">Try →</a></div></div>
+      <div class="card"><div class="card-icon">🟩</div><div class="card-title">Flat UI Colors</div><div class="card-sub">280 handpicked flat colors in 13 palettes.</div><div class="btn-row"><a href="https://flatuicolors.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     ANIMATION
-════════════════════════════════════════ -->
+<!-- ════ ANIMATION ════ -->
 <section id="animation">
   <div class="container">
     <div class="sec-header">
       <p class="sec-eyebrow">Motion & Effects</p>
       <h2 class="sec-title">✨ Animation Libraries</h2>
-      <p class="sec-sub">Add smooth animations and scroll effects to your website with these easy CDN libraries.</p>
+      <p class="sec-sub">Add smooth animations and scroll effects with these easy CDN libraries.</p>
     </div>
     <div class="grid-2">
       <div class="card">
         <div class="card-icon">📜</div>
         <div class="card-title">AOS — Animate On Scroll</div>
-        <div class="card-sub">Animate elements as they scroll into view. Add CSS + JS to <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code> and <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;/body&gt;</code>.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"&gt;</code>
-        </div>
-        <div class="code-block" style="margin-top:8px">
-          <div class="code-header"><span>JS — before &lt;/body&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"&gt;&lt;/script&gt;
-&lt;script&gt;AOS.init();&lt;/script&gt;</code>
-        </div>
-        <div class="card-sub" style="margin-top:12px">Usage — add <code style="display:inline;padding:2px 6px;font-size:12px;">data-aos</code> to any element:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;div data-aos="fade-up"&gt;Animates on scroll!&lt;/div&gt;
-&lt;div data-aos="zoom-in" data-aos-delay="200"&gt;Delayed zoom!&lt;/div&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-primary">View Demo →</a>
-        </div>
+        <div class="card-sub">Animate elements as they scroll into view.</div>
+        <div class="code-block"><div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"&gt;</code></div>
+        <div class="code-block" style="margin-top:8px"><div class="code-header"><span>JS — before &lt;/body&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"&gt;&lt;/script&gt;
+&lt;script&gt;AOS.init();&lt;/script&gt;</code></div>
+        <div class="code-block" style="margin-top:8px"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;div data-aos="fade-up"&gt;Animates on scroll!&lt;/div&gt;
+&lt;div data-aos="zoom-in" data-aos-delay="200"&gt;Delayed zoom!&lt;/div&gt;</code></div>
+        <div class="btn-row"><a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-primary">View Demo →</a></div>
       </div>
       <div class="card">
         <div class="card-icon">💫</div>
         <div class="card-title">Animate.css</div>
-        <div class="card-sub">Just add a class to any element for instant CSS animations. No JS needed for basic use.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"&gt;</code>
-        </div>
-        <div class="card-sub" style="margin-top:12px">Usage — add classes to any element:</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;h1 class="animate__animated animate__fadeIn"&gt;
+        <div class="card-sub">Just add a class to any element for instant CSS animations.</div>
+        <div class="code-block"><div class="code-header"><span>CSS — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"&gt;</code></div>
+        <div class="code-block" style="margin-top:8px"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;h1 class="animate__animated animate__fadeIn"&gt;
   Fades in!
 &lt;/h1&gt;
 &lt;p class="animate__animated animate__bounceIn"&gt;
   Bounces in!
-&lt;/p&gt;</code>
-        </div>
-        <div class="btn-row">
-          <a href="https://animate.style/" target="_blank" class="btn btn-primary">View All Animations →</a>
-        </div>
+&lt;/p&gt;</code></div>
+        <div class="btn-row"><a href="https://animate.style/" target="_blank" class="btn btn-primary">View All →</a></div>
       </div>
     </div>
     <div class="divider"></div>
-    <h3 style="font-family:var(--display);font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--muted);">🎬 More CSS Animation & Effect Tools</h3>
     <div class="grid-4">
+      <div class="card"><div class="card-icon">🎞️</div><div class="card-title">Animista</div><div class="card-sub">On-demand CSS animation library. Pick, customize, copy.</div><div class="btn-row"><a href="https://animista.net/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">🌊</div><div class="card-title">Keyframes.app</div><div class="card-sub">Visual CSS animation editor with timeline.</div><div class="btn-row"><a href="https://keyframes.app/animate/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">✨</div><div class="card-title">CSS Tricks — Animations</div><div class="card-sub">Complete guide to CSS animations with examples.</div><div class="btn-row"><a href="https://css-tricks.com/almanac/properties/a/animation/" target="_blank" class="btn btn-primary">Read →</a></div></div>
       <div class="card">
-        <div class="card-icon">🎞️</div>
-        <div class="card-title">Animista</div>
-        <div class="card-sub">On-demand CSS animation library. Pick an animation, customize it, and copy the CSS code.</div>
-        <div class="btn-row"><a href="https://animista.net/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌊</div>
-        <div class="card-title">Keyframes.app</div>
-        <div class="card-sub">Visual CSS animation editor. Create keyframe animations with a timeline — no code needed.</div>
-        <div class="btn-row"><a href="https://keyframes.app/animate/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">✨</div>
-        <div class="card-title">CSS Tricks — Animations</div>
-        <div class="card-sub">Complete guide to CSS animations with examples, timing functions, and practical tutorials.</div>
-        <div class="btn-row"><a href="https://css-tricks.com/almanac/properties/a/animation/" target="_blank" class="btn btn-primary">Read Guide →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎭</div>
-        <div class="card-title">Magic Animations CSS</div>
-        <div class="card-sub">Special CSS animations with unique effects. CDN ready, just add the class.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magic.css@1.1.0/dist/magic.min.css"&gt;</code>
-        </div>
-        <div class="btn-row"><a href="https://www.minimamente.com/project/magic/" target="_blank" class="btn btn-primary">View Demo →</a></div>
+        <div class="card-icon">🎭</div><div class="card-title">Magic Animations CSS</div><div class="card-sub">Special CSS animations with unique effects.</div>
+        <div class="code-block"><div class="code-header"><span>CDN</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magic.css@1.1.0/dist/magic.min.css"&gt;</code></div>
+        <div class="btn-row"><a href="https://www.minimamente.com/project/magic/" target="_blank" class="btn btn-primary">View →</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     ILLUSTRATIONS
-════════════════════════════════════════ -->
+<!-- ════ ILLUSTRATIONS ════ -->
 <section id="illustrations">
   <div class="container">
     <div class="sec-header">
       <p class="sec-eyebrow">Vector Assets</p>
       <h2 class="sec-title">🎨 Free Illustrations</h2>
-      <p class="sec-sub">High-quality free SVG illustrations for your websites and apps — no attribution required.</p>
+      <p class="sec-sub">High-quality free SVG illustrations — no attribution required.</p>
     </div>
     <div class="grid-4">
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1e2230,#2a3050);">🖼️</div>
-        <div class="img-card-body">
-          <h4>unDraw</h4>
-          <p>Open-source SVG illustrations for any idea. Change colors to match your brand instantly.</p>
-          <div class="btn-row"><a href="https://undraw.co/illustrations" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#2a1e2a,#3a2040);">📖</div>
-        <div class="img-card-body">
-          <h4>Storyset</h4>
-          <p>Free customizable illustrations for your projects. Animate them too with one click!</p>
-          <div class="btn-row"><a href="https://storyset.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1a2230,#2040a0);">🧩</div>
-        <div class="img-card-body">
-          <h4>ManyPixels</h4>
-          <p>2,500+ royalty-free illustrations. Download as SVG or PNG, customize colors freely.</p>
-          <div class="btn-row"><a href="https://www.manypixels.co/gallery" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1e2820,#204030);">🧍</div>
-        <div class="img-card-body">
-          <h4>Open Peeps</h4>
-          <p>Hand-drawn illustration library of people. Mix and match body parts to create unique characters.</p>
-          <div class="btn-row"><a href="https://www.openpeeps.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1e2230,#2a3050);">🖼️</div><div class="img-card-body"><h4>unDraw</h4><p>Open-source SVG illustrations for any idea.</p><div class="btn-row"><a href="https://undraw.co/illustrations" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#2a1e2a,#3a2040);">📖</div><div class="img-card-body"><h4>Storyset</h4><p>Free customizable illustrations. Animate them too!</p><div class="btn-row"><a href="https://storyset.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1a2230,#2040a0);">🧩</div><div class="img-card-body"><h4>ManyPixels</h4><p>2,500+ royalty-free illustrations.</p><div class="btn-row"><a href="https://www.manypixels.co/gallery" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1e2820,#204030);">🧍</div><div class="img-card-body"><h4>Open Peeps</h4><p>Hand-drawn illustration library of people.</p><div class="btn-row"><a href="https://www.openpeeps.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     PHOTOS
-════════════════════════════════════════ -->
+<!-- ════ PHOTOS ════ -->
 <section id="photos">
   <div class="container">
     <div class="sec-header">
       <p class="sec-eyebrow">Stock Photos</p>
       <h2 class="sec-title">📸 Free Photos & Assets</h2>
-      <p class="sec-sub">Free placeholder and stock images for your projects — no watermarks, no attribution needed.</p>
+      <p class="sec-sub">Free placeholder and stock images — no watermarks, no attribution needed.</p>
     </div>
     <div class="grid-3">
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1e2230,#2a2f42);">🧑‍💻</div>
-        <div class="img-card-body">
-          <h4>Pravatar — Headshots</h4>
-          <p>Fake avatar/profile photos for mockups.</p>
-          <div class="code-block">
-            <div class="code-header"><span>URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-            <code>https://pravatar.cc/150?img=1</code>
-          </div>
-          <div class="btn-row"><a href="https://pravatar.cc/" target="_blank" class="btn btn-outline">Visit →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1a2030,#233040);">🖼️</div>
-        <div class="img-card-body">
-          <h4>Placehold.co — Placeholder</h4>
-          <p>Custom size placeholder images instantly.</p>
-          <div class="code-block">
-            <div class="code-header"><span>URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-            <code>https://placehold.co/600x400</code>
-          </div>
-          <div class="btn-row"><a href="https://placehold.co/" target="_blank" class="btn btn-outline">Visit →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1e2030,#2d2040);">📸</div>
-        <div class="img-card-body">
-          <h4>Pixabay — Free Stock</h4>
-          <p>Over 4M free photos, videos & music. Safe for commercial use.</p>
-          <div class="btn-row"><a href="https://pixabay.com/photos/" target="_blank" class="btn btn-primary">Browse Photos →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#202030,#301848);">🌄</div>
-        <div class="img-card-body">
-          <h4>Pexels</h4>
-          <p>Free stock photos & videos shared by talented creators. No attribution required.</p>
-          <div class="btn-row"><a href="https://www.pexels.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">🏔️</div>
-        <div class="img-card-body">
-          <h4>Unsplash</h4>
-          <p>Over 3M free high-resolution photos. Beautiful, curated, free to use anywhere.</p>
-          <div class="btn-row"><a href="https://unsplash.com/" target="_blank" class="btn btn-primary">Browse →</a></div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-preview" style="background:linear-gradient(135deg,#1e2830,#1e3040);">📱</div>
-        <div class="img-card-body">
-          <h4>Responsive Device</h4>
-          <p>Show your site in device mockup screenshots.</p>
-          <div class="btn-row"><a href="https://www.responsivedevice.com/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-        </div>
-      </div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1e2230,#2a2f42);">🧑‍💻</div><div class="img-card-body"><h4>Pravatar — Headshots</h4><p>Fake avatar photos for mockups.</p><div class="code-block"><div class="code-header"><span>URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>https://pravatar.cc/150?img=1</code></div><div class="btn-row"><a href="https://pravatar.cc/" target="_blank" class="btn btn-outline">Visit →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1a2030,#233040);">🖼️</div><div class="img-card-body"><h4>Placehold.co — Placeholder</h4><p>Custom size placeholder images instantly.</p><div class="code-block"><div class="code-header"><span>URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>https://placehold.co/600x400</code></div><div class="btn-row"><a href="https://placehold.co/" target="_blank" class="btn btn-outline">Visit →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1e2030,#2d2040);">📸</div><div class="img-card-body"><h4>Pixabay — Free Stock</h4><p>Over 4M free photos, videos & music.</p><div class="btn-row"><a href="https://pixabay.com/photos/" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#202030,#301848);">🌄</div><div class="img-card-body"><h4>Pexels</h4><p>Free stock photos & videos. No attribution required.</p><div class="btn-row"><a href="https://www.pexels.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">🏔️</div><div class="img-card-body"><h4>Unsplash</h4><p>Over 3M free high-resolution photos.</p><div class="btn-row"><a href="https://unsplash.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div></div>
+      <div class="img-card"><div class="img-preview" style="background:linear-gradient(135deg,#1e2830,#1e3040);">📱</div><div class="img-card-body"><h4>Responsive Device</h4><p>Show your site in device mockup screenshots.</p><div class="btn-row"><a href="https://www.responsivedevice.com/" target="_blank" class="btn btn-primary">Open →</a></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     CSS BACKGROUNDS
-════════════════════════════════════════ -->
+<!-- ════ BACKGROUNDS ════ -->
 <section id="backgrounds">
   <div class="container">
     <div class="sec-header">
@@ -1112,55 +1226,23 @@ h1   { font-family: 'Open Sans', sans-serif; }</code>
       <p class="sec-sub">Generate beautiful CSS background patterns, gradients, and mesh effects for free.</p>
     </div>
     <div class="grid-4">
+      <div class="card"><div class="card-icon">🟣</div><div class="card-title">CSS Gradient</div><div class="card-sub">Ultimate CSS gradient generator.</div><div class="btn-row"><a href="https://cssgradient.io/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">🔲</div><div class="card-title">Hero Patterns</div><div class="card-sub">Repeatable SVG background patterns.</div><div class="btn-row"><a href="https://heropatterns.com/" target="_blank" class="btn btn-primary">Browse →</a></div></div>
+      <div class="card"><div class="card-icon">🌊</div><div class="card-title">SVG Waves — Haikei</div><div class="card-sub">Generate unique SVG waves, blobs, and shapes.</div><div class="btn-row"><a href="https://app.haikei.app/" target="_blank" class="btn btn-primary">Open →</a></div></div>
+      <div class="card"><div class="card-icon">🎨</div><div class="card-title">Mesh Gradient</div><div class="card-sub">Stunning mesh gradients for modern UI.</div><div class="btn-row"><a href="https://meshgradient.in/" target="_blank" class="btn btn-primary">Generate →</a></div></div>
+      <div class="card"><div class="card-icon">🔵</div><div class="card-title">CSS Pattern Gallery</div><div class="card-sub">100+ CSS background patterns — dots, lines, checks.</div><div class="btn-row"><a href="https://www.magicpattern.design/tools/css-backgrounds" target="_blank" class="btn btn-primary">Browse →</a></div></div>
       <div class="card">
-        <div class="card-icon">🟣</div>
-        <div class="card-title">CSS Gradient</div>
-        <div class="card-sub">Ultimate CSS gradient generator. Visual tool — pick colors and copy the CSS instantly.</div>
-        <div class="btn-row"><a href="https://cssgradient.io/" target="_blank" class="btn btn-primary">Open Tool →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔲</div>
-        <div class="card-title">Hero Patterns</div>
-        <div class="card-sub">Repeatable SVG background patterns for web projects. Free, copy CSS or SVG directly.</div>
-        <div class="btn-row"><a href="https://heropatterns.com/" target="_blank" class="btn btn-primary">Browse Patterns →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌊</div>
-        <div class="card-title">SVG Waves — Haikei</div>
-        <div class="card-sub">Generate unique SVG waves, blobs, and shapes for backgrounds. Export as SVG or PNG.</div>
-        <div class="btn-row"><a href="https://app.haikei.app/" target="_blank" class="btn btn-primary">Open Generator →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎨</div>
-        <div class="card-title">Mesh Gradient</div>
-        <div class="card-sub">Generate stunning mesh gradients for modern UI backgrounds. Copy CSS or download as PNG.</div>
-        <div class="btn-row"><a href="https://meshgradient.in/" target="_blank" class="btn btn-primary">Generate →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔵</div>
-        <div class="card-title">CSS Pattern Gallery</div>
-        <div class="card-sub">Magic Pattern — 100+ CSS background patterns. Dots, lines, checks — all pure CSS.</div>
-        <div class="btn-row"><a href="https://www.magicpattern.design/tools/css-backgrounds" target="_blank" class="btn btn-primary">Browse →</a></div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🫧</div>
-        <div class="card-title">Glassmorphism</div>
-        <div class="card-sub">Generate glassmorphism CSS effects — the frosted glass look that's trending in modern UI.</div>
-        <div class="code-block">
-          <div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>background: rgba(255,255,255,0.1);
+        <div class="card-icon">🫧</div><div class="card-title">Glassmorphism</div><div class="card-sub">Generate glassmorphism CSS effects.</div>
+        <div class="code-block"><div class="code-header"><span>CSS example</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>background: rgba(255,255,255,0.1);
 backdrop-filter: blur(10px);
-border: 1px solid rgba(255,255,255,0.2);</code>
-        </div>
+border: 1px solid rgba(255,255,255,0.2);</code></div>
         <div class="btn-row"><a href="https://ui.glass/generator/" target="_blank" class="btn btn-primary">Generate →</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     BOILERPLATE
-════════════════════════════════════════ -->
+<!-- ════ BOILERPLATE ════ -->
 <section id="boilerplate">
   <div class="container">
     <div class="sec-header">
@@ -1171,10 +1253,8 @@ border: 1px solid rgba(255,255,255,0.2);</code>
     <div class="grid-2">
       <div class="card">
         <div class="card-title">📄 Basic HTML5 Boilerplate</div>
-        <div class="card-sub">Minimal starter — just HTML structure with no frameworks.</div>
-        <div class="code-block">
-          <div class="code-header"><span>index.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;!DOCTYPE html&gt;
+        <div class="card-sub">Minimal starter — just HTML structure.</div>
+        <div class="code-block"><div class="code-header"><span>index.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
@@ -1189,15 +1269,12 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 
   &lt;script src="script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code>
-        </div>
+&lt;/html&gt;</code></div>
       </div>
       <div class="card">
         <div class="card-title">🅱 Bootstrap 5 Boilerplate</div>
         <div class="card-sub">Full starter with Bootstrap CSS + JS via CDN.</div>
-        <div class="code-block">
-          <div class="code-header"><span>index.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;!DOCTYPE html&gt;
+        <div class="code-block"><div class="code-header"><span>index.html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
@@ -1217,15 +1294,12 @@ border: 1px solid rgba(255,255,255,0.2);</code>
   &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
   &lt;script src="script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code>
-        </div>
+&lt;/html&gt;</code></div>
       </div>
       <div class="card" style="grid-column:1/-1;">
         <div class="card-title">🚀 Full Pro Boilerplate</div>
         <div class="card-sub">Bootstrap 5 + Font Awesome + Bootstrap Icons + Google Material Icons + Ionicons + Google Fonts + Bunny Fonts — everything loaded and ready.</div>
-        <div class="code-block">
-          <div class="code-header"><span>index.html — Full Stack Starter</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;!DOCTYPE html&gt;
+        <div class="code-block"><div class="code-header"><span>index.html — Full Stack Starter</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
@@ -1263,7 +1337,7 @@ border: 1px solid rgba(255,255,255,0.2);</code>
   &lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
     rel="stylesheet"&gt;
 
-  &lt;!-- Bunny Fonts (Privacy-friendly alternative) --&gt;
+  &lt;!-- Bunny Fonts --&gt;
   &lt;link rel="preconnect" href="https://fonts.bunny.net"&gt;
   &lt;link href="https://fonts.bunny.net/css?family=roboto:400,700&display=swap" rel="stylesheet"&gt;
 
@@ -1274,13 +1348,9 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 
   &lt;div class="container"&gt;
     &lt;h1&gt;Welcome!&lt;/h1&gt;
-    &lt;!-- Bootstrap Icon --&gt;
     &lt;i class="bi bi-house"&gt;&lt;/i&gt;
-    &lt;!-- Font Awesome Icon --&gt;
     &lt;i class="fa-solid fa-star"&gt;&lt;/i&gt;
-    &lt;!-- Material Icon --&gt;
     &lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;
-    &lt;!-- Ionicon --&gt;
     &lt;ion-icon name="home"&gt;&lt;/ion-icon&gt;
   &lt;/div&gt;
 
@@ -1292,16 +1362,13 @@ border: 1px solid rgba(255,255,255,0.2);</code>
   &lt;!-- Custom JS --&gt;
   &lt;script src="script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code>
-        </div>
+&lt;/html&gt;</code></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     SEO TAGS
-════════════════════════════════════════ -->
+<!-- ════ SEO TAGS ════ -->
 <section id="seo">
   <div class="container">
     <div class="sec-header">
@@ -1313,37 +1380,29 @@ border: 1px solid rgba(255,255,255,0.2);</code>
       <div class="card">
         <div class="card-title">🔎 Essential SEO Tags</div>
         <div class="card-sub">Description, keywords, and author — the three must-haves.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;meta name="description"
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;meta name="description"
   content="Free Web tutorials"&gt;
 &lt;meta name="keywords"
   content="HTML, CSS, JavaScript"&gt;
 &lt;meta name="author"
-  content="John Doe"&gt;</code>
-        </div>
+  content="John Doe"&gt;</code></div>
       </div>
       <div class="card">
         <div class="card-title">⚙️ HTTP-Equiv Meta Tags</div>
         <div class="card-sub">Browser behavior, language, caching, and compatibility settings.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;meta http-equiv="X-UA-Compatible"
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;meta http-equiv="X-UA-Compatible"
   content="IE=edge"&gt;
 &lt;meta http-equiv="content-language"
   content="en"&gt;
 &lt;meta http-equiv="cache-control"
   content="no-cache"&gt;
 &lt;meta http-equiv="refresh"
-  content="30"&gt;</code>
-        </div>
+  content="30"&gt;</code></div>
       </div>
       <div class="card">
         <div class="card-title">📱 Open Graph Tags (Social Share)</div>
         <div class="card-sub">Control how your site looks when shared on Facebook, WhatsApp, etc.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;meta property="og:title"
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;meta property="og:title"
   content="My Website"&gt;
 &lt;meta property="og:description"
   content="Free Web tutorials"&gt;
@@ -1352,30 +1411,24 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 &lt;meta property="og:url"
   content="https://example.com"&gt;
 &lt;meta property="og:type"
-  content="website"&gt;</code>
-        </div>
+  content="website"&gt;</code></div>
       </div>
       <div class="card">
         <div class="card-title">🐦 Twitter Card Tags</div>
         <div class="card-sub">Control how your site looks when shared on Twitter / X.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — paste in &lt;head&gt;</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;meta name="twitter:card"
+        <div class="code-block"><div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;meta name="twitter:card"
   content="summary_large_image"&gt;
 &lt;meta name="twitter:title"
   content="My Website"&gt;
 &lt;meta name="twitter:description"
   content="Free Web tutorials"&gt;
 &lt;meta name="twitter:image"
-  content="https://example.com/image.jpg"&gt;</code>
-        </div>
+  content="https://example.com/image.jpg"&gt;</code></div>
       </div>
       <div class="card" style="grid-column:1/-1;">
-        <div class="card-title">🧩 All SEO Tags Combined — Copy Once</div>
+        <div class="card-title">🧩 All SEO Tags Combined</div>
         <div class="card-sub">Paste this full block inside your <code style="display:inline;padding:2px 6px;font-size:12px;">&lt;head&gt;</code> and customize the values.</div>
-        <div class="code-block">
-          <div class="code-header"><span>HTML — Full SEO Block</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <code>&lt;!-- Primary SEO --&gt;
+        <div class="code-block"><div class="code-header"><span>HTML — Full SEO Block</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>&lt;!-- Primary SEO --&gt;
 &lt;meta name="description" content="Free Web tutorials"&gt;
 &lt;meta name="keywords" content="HTML, CSS, JavaScript"&gt;
 &lt;meta name="author" content="John Doe"&gt;
@@ -1397,16 +1450,13 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 &lt;meta name="twitter:card" content="summary_large_image"&gt;
 &lt;meta name="twitter:title" content="My Website"&gt;
 &lt;meta name="twitter:description" content="Free Web tutorials"&gt;
-&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</code>
-        </div>
+&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</code></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     TOOLS
-════════════════════════════════════════ -->
+<!-- ════ TOOLS ════ -->
 <section id="tools">
   <div class="container">
     <div class="sec-header">
@@ -1415,54 +1465,18 @@ border: 1px solid rgba(255,255,255,0.2);</code>
       <p class="sec-sub">Bookmark these — you'll use them every day.</p>
     </div>
     <div class="grid-3">
-      <div class="card">
-        <div class="card-icon">📐</div>
-        <div class="card-title">Responsive Device</div>
-        <div class="card-sub">Test how your website looks on phones, tablets, and desktops.</div>
-        <a href="https://www.responsivedevice.com/" target="_blank" class="btn btn-outline" style="margin-top:4px">Open Tool →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">📖</div>
-        <div class="card-title">W3Schools</div>
-        <div class="card-sub">The go-to reference for all HTML, CSS, JS syntax and examples.</div>
-        <a href="https://www.w3schools.com/" target="_blank" class="btn btn-green" style="margin-top:4px">Learn Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎓</div>
-        <div class="card-title">WebCoachBD</div>
-        <div class="card-sub">Bangla web development tutorials and resources for Bangladeshi students.</div>
-        <a href="https://www.webcoachbd.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Visit →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">📞</div>
-        <div class="card-title">Contact Arafat Ahmed</div>
-        <div class="card-sub">WhatsApp, Call, or Email for questions and help with your projects.</div>
-        <div class="btn-row" style="margin-top:8px">
-          <a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a>
-          <a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a>
-          <a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Mail</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎨</div>
-        <div class="card-title">getcssscan.com</div>
-        <div class="card-sub">CSS buttons, shapes, checkboxes, box shadows and more — copy-paste ready.</div>
-        <a href="https://getcssscan.com/" target="_blank" class="btn btn-amber" style="margin-top:4px">Open Tool →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🧩</div>
-        <div class="card-title">Bootstrap Examples</div>
-        <div class="card-sub">Pre-built Bootstrap components, navbars, cards, heroes — ready to copy.</div>
-        <a href="https://bootstrapexamples.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Browse →</a>
-      </div>
+      <div class="card"><div class="card-icon">📐</div><div class="card-title">Responsive Device</div><div class="card-sub">Test how your website looks on phones, tablets, and desktops.</div><a href="https://www.responsivedevice.com/" target="_blank" class="btn btn-outline" style="margin-top:4px">Open Tool →</a></div>
+      <div class="card"><div class="card-icon">📖</div><div class="card-title">W3Schools</div><div class="card-sub">The go-to reference for all HTML, CSS, JS syntax and examples.</div><a href="https://www.w3schools.com/" target="_blank" class="btn btn-green" style="margin-top:4px">Learn Now →</a></div>
+      <div class="card"><div class="card-icon">🎓</div><div class="card-title">WebCoachBD</div><div class="card-sub">Bangla web development tutorials for Bangladeshi students.</div><a href="https://www.webcoachbd.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Visit →</a></div>
+      <div class="card"><div class="card-icon">📞</div><div class="card-title">Contact Arafat Ahmed</div><div class="card-sub">WhatsApp, Call, or Email for questions and help with your projects.</div><div class="btn-row" style="margin-top:8px"><a href="https://wa.me/8801786945337" target="_blank" class="btn btn-green">💬 WhatsApp</a><a href="tel:+8801516010811" class="btn btn-primary">📞 Call</a><a href="mailto:arafatahmed.cit.bd@gmail.com" class="btn btn-amber">✉ Mail</a></div></div>
+      <div class="card"><div class="card-icon">🎨</div><div class="card-title">getcssscan.com</div><div class="card-sub">CSS buttons, shapes, checkboxes, box shadows — copy-paste ready.</div><a href="https://getcssscan.com/" target="_blank" class="btn btn-amber" style="margin-top:4px">Open Tool →</a></div>
+      <div class="card"><div class="card-icon">🧩</div><div class="card-title">Bootstrap Examples</div><div class="card-sub">Pre-built Bootstrap components, navbars, cards, heroes — ready to copy.</div><a href="https://bootstrapexamples.com/" target="_blank" class="btn btn-primary" style="margin-top:4px">Browse →</a></div>
     </div>
     <div class="divider"></div>
     <div class="card">
       <div class="card-title">📁 Recommended Project Folder Structure</div>
       <div class="card-sub">Mirror the structure shown in your VS Code file explorer.</div>
-      <div class="code-block">
-        <div class="code-header"><span>Folder Layout</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-        <code>my_site/
+      <div class="code-block"><div class="code-header"><span>Folder Layout</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><code>my_site/
 ├── css/
 │   └── bootstrap.min.css       ← Bootstrap CSS File
 ├── js/
@@ -1472,8 +1486,7 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 ├── webfonts/                   ← Font Awesome folder
 ├── index.html                  ← Main HTML file
 ├── style.css                   ← Custom CSS file
-└── favicon.ico                 ← Website Favicon</code>
-      </div>
+└── favicon.ico                 ← Website Favicon</code></div>
     </div>
   </div>
 </section>
@@ -1491,347 +1504,127 @@ border: 1px solid rgba(255,255,255,0.2);</code>
 <a href="https://wa.me/8801786945337" target="_blank" class="wa-btn" title="WhatsApp">💬</a>
 
 <script>
-/* ════════════════════════════════════════
-   NAV DROPDOWN TOGGLE
-════════════════════════════════════════ */
 function toggleMenu(id) {
-  var all = document.querySelectorAll('.nav-item');
-  all.forEach(function(item) {
-    if (item.id !== id) item.classList.remove('open');
+  var clickedItem = document.getElementById(id);
+  var wasOpen = clickedItem.classList.contains('open');
+
+  document.querySelectorAll('.nav-item').forEach(function(item) {
+    item.classList.remove('open');
   });
-  var el = document.getElementById(id);
-  if (el) el.classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-item')) {
-    document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
+
+  if (!wasOpen) {
+    clickedItem.classList.add('open');
+    var btn = clickedItem.querySelector('button');
+    var dropdown = clickedItem.querySelector('.dropdown');
+    if (btn && dropdown) {
+      var rect = btn.getBoundingClientRect();
+      dropdown.style.top = (rect.bottom + 8) + 'px';
+      dropdown.style.left = rect.left + 'px';
+
+      // স্ক্রিনের বাইরে চলে গেলে right এ adjust করো
+      var maxLeft = window.innerWidth - dropdown.offsetWidth - 12;
+      if (rect.left > maxLeft) {
+        dropdown.style.left = maxLeft + 'px';
+      }
+    }
   }
+}
+
+// স্ক্রল বা রিসাইজ হলে খোলা dropdown বন্ধ করে দেওয়া ভালো (পজিশন বদলে যায়)
+window.addEventListener('scroll', function() {
+  document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
+}, true);
+window.addEventListener('resize', function() {
+  document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
 });
 
-/* ════════════════════════════════════════
-   SECURITY — Block DevTools, View Source, Copy
-════════════════════════════════════════ */
 (function(){
-  document.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-    showBlock('Right-click is disabled.');
-  });
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); showBlock('Right-click is disabled.'); });
   document.addEventListener('keydown', function(e){
-    var k = (e.key||'').toLowerCase();
-    var ctrl = e.ctrlKey || e.metaKey;
-    var shift = e.shiftKey;
+    var k = (e.key||'').toLowerCase(); var ctrl = e.ctrlKey || e.metaKey; var shift = e.shiftKey;
     if(e.keyCode === 123){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
     if(ctrl && shift && 'ijck'.includes(k)){ e.preventDefault(); showBlock('DevTools blocked!'); return false; }
     if(ctrl && k === 'u'){ e.preventDefault(); showBlock('View Source is disabled.'); return false; }
     if(ctrl && k === 's'){ e.preventDefault(); showBlock('Saving is disabled.'); return false; }
     if(ctrl && k === 'a'){ e.preventDefault(); return false; }
     if(ctrl && k === 'p'){ e.preventDefault(); return false; }
-    if(ctrl && k === 'c'){
-      var active = document.activeElement;
-      if(!(active && active.id === 'searchInput')){ e.preventDefault(); return false; }
-    }
+    if(ctrl && k === 'c'){ var active = document.activeElement; if(!(active && active.id === 'searchInput')){ e.preventDefault(); return false; } }
     if(ctrl && k === 'x'){ e.preventDefault(); return false; }
   });
   var devOpen = false;
-  setInterval(function(){
-    var wGap = window.outerWidth  - window.innerWidth;
-    var hGap = window.outerHeight - window.innerHeight;
-    var open = wGap > 300 || hGap > 300;
-    if(open && !devOpen){ devOpen = true; showBlock('DevTools detected!'); }
-    else if(!open){ devOpen = false; }
-  }, 800);
+  setInterval(function(){ var wGap = window.outerWidth - window.innerWidth; var hGap = window.outerHeight - window.innerHeight; var open = wGap > 300 || hGap > 300; if(open && !devOpen){ devOpen = true; showBlock('DevTools detected!'); } else if(!open){ devOpen = false; } }, 800);
   document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-  document.addEventListener('selectstart', function(e){
-    if(e.target && e.target.id === 'searchInput') return;
-    e.preventDefault();
-  });
+  document.addEventListener('selectstart', function(e){ if(e.target && e.target.id === 'searchInput') return; e.preventDefault(); });
   window.addEventListener('beforeprint', function(e){ e.preventDefault(); window.stop(); });
-  try {
-    var mq = window.matchMedia('print');
-    if(mq && mq.addListener) mq.addListener(function(m){
-      if(m.matches){ document.body.style.display='none'; setTimeout(function(){ document.body.style.display=''; },500); }
-    });
-  } catch(e){}
-  if(window.top !== window.self){
-    try { window.top.location = window.self.location; } catch(e){}
-  }
-  document.querySelectorAll('*').forEach(function(el){
-    el.childNodes.forEach(function(node){
-      if(node.nodeType === 8) node.remove();
-    });
-  });
+  if(window.top !== window.self){ try { window.top.location = window.self.location; } catch(e){} }
   var _overlayTimer = null;
-  function showBlock(msg){
-    var el = document.getElementById('blocked-overlay');
-    var sm = document.getElementById('block-msg');
-    if(sm && msg) sm.textContent = msg;
-    if(el) el.classList.add('show');
-    clearTimeout(_overlayTimer);
-    _overlayTimer = setTimeout(hideBlock, 2500);
-  }
-  function hideBlock(){
-    var el = document.getElementById('blocked-overlay');
-    if(el) el.classList.remove('show');
-  }
+  function showBlock(msg){ var el = document.getElementById('blocked-overlay'); var sm = document.getElementById('block-msg'); if(sm && msg) sm.textContent = msg; if(el) el.classList.add('show'); clearTimeout(_overlayTimer); _overlayTimer = setTimeout(hideBlock, 2500); }
+  function hideBlock(){ var el = document.getElementById('blocked-overlay'); if(el) el.classList.remove('show'); }
 })();
 
-/* ════════════════════════════════════════
-   CURSOR TRAIL — 5 MODES
-════════════════════════════════════════ */
 (function(){
-  var dot    = document.getElementById('cursorDot');
-  var ring   = document.getElementById('cursorRing');
-  var canvas = document.getElementById('cursor-canvas');
-  var ctx    = canvas.getContext('2d');
-  var badge  = document.getElementById('cursor-mode-badge');
-  var W, H;
-  var mouse   = {x: -100, y: -100};
-  var ringPos = {x: -100, y: -100};
-  var mode    = 1;
+  var dot = document.getElementById('cursorDot'); var ring = document.getElementById('cursorRing'); var canvas = document.getElementById('cursor-canvas'); var ctx = canvas.getContext('2d'); var badge = document.getElementById('cursor-mode-badge');
+  var W, H; var mouse = {x:-100,y:-100}; var ringPos = {x:-100,y:-100}; var mode = 1;
   var particles = [], trail = [], stars = [], bubbles = [], bolts = [];
   var colors1 = ['#5b6ef5','#22d3a5','#f5a623','#e879f9','#38bdf8'];
   var colors3 = ['#ffffff','#ffe566','#22d3a5','#5b6ef5','#f5a623'];
   var colors4 = ['#5b6ef5','#7dd3fc','#a78bfa','#22d3a5','#ffffff'];
   var colors5 = ['#e0f2ff','#f5a623','#ffffff','#fff066'];
-
   function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   window.addEventListener('resize', resize); resize();
-
   var badgeTimer;
   function updateMode(){
-    var scrollY  = window.scrollY || window.pageYOffset;
-    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    var pct = maxScroll > 0 ? scrollY / maxScroll : 0;
+    var scrollY = window.scrollY || window.pageYOffset; var maxScroll = document.documentElement.scrollHeight - window.innerHeight; var pct = maxScroll > 0 ? scrollY / maxScroll : 0;
     var newMode = pct < 0.2 ? 1 : pct < 0.4 ? 2 : pct < 0.6 ? 3 : pct < 0.8 ? 4 : 5;
     if(newMode !== mode){
       mode = newMode;
-      var labels = {1:'✦ Effect 1 — Sparkle', 2:'⚡ Effect 2 — Comet', 3:'★ Effect 3 — Stardust', 4:'◌ Effect 4 — Bubbles', 5:'⚡ Effect 5 — Lightning'};
-      var bcolors = {1:'var(--accent)', 2:'var(--accent2)', 3:'var(--accent3)', 4:'#7dd3fc', 5:'#fff066'};
-      badge.textContent = labels[mode];
-      badge.style.color = bcolors[mode];
-      badge.style.borderColor = bcolors[mode];
-      badge.style.opacity = '1';
-      clearTimeout(badgeTimer);
-      badgeTimer = setTimeout(function(){ badge.style.opacity='0'; }, 1800);
-      var dc = {1:'#5b6ef5', 2:'#22d3a5', 3:'#f5a623', 4:'#7dd3fc', 5:'#fff066'};
-      dot.style.background  = dc[mode];
-      dot.style.boxShadow   = '0 0 10px '+dc[mode]+', 0 0 20px '+dc[mode];
-      ring.style.borderColor = dc[mode]+'88';
+      var labels = {1:'✦ Effect 1 — Sparkle',2:'⚡ Effect 2 — Comet',3:'★ Effect 3 — Stardust',4:'◌ Effect 4 — Bubbles',5:'⚡ Effect 5 — Lightning'};
+      var bcolors = {1:'var(--accent)',2:'var(--accent2)',3:'var(--accent3)',4:'#7dd3fc',5:'#fff066'};
+      badge.textContent = labels[mode]; badge.style.color = bcolors[mode]; badge.style.borderColor = bcolors[mode]; badge.style.opacity = '1';
+      clearTimeout(badgeTimer); badgeTimer = setTimeout(function(){ badge.style.opacity='0'; }, 1800);
+      var dc = {1:'#5b6ef5',2:'#22d3a5',3:'#f5a623',4:'#7dd3fc',5:'#fff066'};
+      dot.style.background = dc[mode]; dot.style.boxShadow = '0 0 10px '+dc[mode]+', 0 0 20px '+dc[mode]; ring.style.borderColor = dc[mode]+'88';
       particles = []; trail = []; bubbles = []; bolts = [];
     }
   }
   window.addEventListener('scroll', updateMode, {passive:true});
-
   document.addEventListener('mousemove', function(e){
-    mouse.x = e.clientX; mouse.y = e.clientY;
-    dot.style.left = e.clientX + 'px';
-    dot.style.top  = e.clientY + 'px';
-    if(mode === 1){
-      for(var i = 0; i < 3; i++){
-        particles.push({x:e.clientX,y:e.clientY,vx:(Math.random()-0.5)*3,vy:(Math.random()-0.5)*3-0.8,alpha:1,size:Math.random()*6+2,color:colors1[Math.floor(Math.random()*colors1.length)],shape:Math.random()>0.5?'circle':'star'});
-      }
-    } else if(mode === 2){
-      trail.push({x:e.clientX,y:e.clientY,age:0});
-      if(trail.length > 32) trail.shift();
-    } else if(mode === 3){
-      var n = Math.floor(Math.random()*3)+2;
-      for(var j=0;j<n;j++){
-        var ang=Math.random()*Math.PI*2, spd=Math.random()*3+0.5;
-        stars.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*3+1,color:colors3[Math.floor(Math.random()*colors3.length)],twinkle:Math.random()*Math.PI*2});
-      }
-    } else if(mode === 4){
-      if(Math.random()>0.5){
-        bubbles.push({x:e.clientX+(Math.random()-0.5)*10,y:e.clientY+(Math.random()-0.5)*10,vx:(Math.random()-0.5)*0.6,vy:-(Math.random()*1.2+0.4),alpha:0.85,size:Math.random()*10+4,color:colors4[Math.floor(Math.random()*colors4.length)]});
-      }
-    } else if(mode === 5){
-      if(Math.random()>0.6){
-        bolts.push({x:e.clientX,y:e.clientY,angle:Math.random()*Math.PI*2,length:Math.random()*30+20,alpha:1,color:colors5[Math.floor(Math.random()*colors5.length)]});
-        if(bolts.length > 40) bolts.shift();
-      }
-    }
+    mouse.x = e.clientX; mouse.y = e.clientY; dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
+    if(mode===1){ for(var i=0;i<3;i++){ particles.push({x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3-.8,alpha:1,size:Math.random()*6+2,color:colors1[Math.floor(Math.random()*colors1.length)],shape:Math.random()>.5?'circle':'star'}); } }
+    else if(mode===2){ trail.push({x:e.clientX,y:e.clientY,age:0}); if(trail.length>32) trail.shift(); }
+    else if(mode===3){ var n=Math.floor(Math.random()*3)+2; for(var j=0;j<n;j++){ var ang=Math.random()*Math.PI*2,spd=Math.random()*3+.5; stars.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*3+1,color:colors3[Math.floor(Math.random()*colors3.length)],twinkle:Math.random()*Math.PI*2}); } }
+    else if(mode===4){ if(Math.random()>.5){ bubbles.push({x:e.clientX+(Math.random()-.5)*10,y:e.clientY+(Math.random()-.5)*10,vx:(Math.random()-.5)*.6,vy:-(Math.random()*1.2+.4),alpha:.85,size:Math.random()*10+4,color:colors4[Math.floor(Math.random()*colors4.length)]}); } }
+    else if(mode===5){ if(Math.random()>.6){ bolts.push({x:e.clientX,y:e.clientY,angle:Math.random()*Math.PI*2,length:Math.random()*30+20,alpha:1,color:colors5[Math.floor(Math.random()*colors5.length)]}); if(bolts.length>40) bolts.shift(); } }
   });
-
-  function animateRing(){
-    ringPos.x += (mouse.x - ringPos.x) * 0.12;
-    ringPos.y += (mouse.y - ringPos.y) * 0.12;
-    ring.style.left = ringPos.x + 'px';
-    ring.style.top  = ringPos.y + 'px';
-    requestAnimationFrame(animateRing);
-  }
+  function animateRing(){ ringPos.x += (mouse.x-ringPos.x)*.12; ringPos.y += (mouse.y-ringPos.y)*.12; ring.style.left = ringPos.x+'px'; ring.style.top = ringPos.y+'px'; requestAnimationFrame(animateRing); }
   animateRing();
-
-  function drawStar(cx,cy,r,points,ctx){
-    var step=Math.PI/points, rot=-Math.PI/2;
-    ctx.beginPath();
-    for(var i=0;i<points*2;i++){
-      var rad=i%2===0?r:r*0.45;
-      ctx.lineTo(cx+Math.cos(rot+step*i)*rad,cy+Math.sin(rot+step*i)*rad);
-    }
-    ctx.closePath();
-  }
-  function drawBolt(b,ctx){
-    var segments=5, x=b.x, y=b.y;
-    var dx=Math.cos(b.angle), dy=Math.sin(b.angle);
-    var segLen=b.length/segments;
-    ctx.beginPath(); ctx.moveTo(x,y);
-    for(var i=1;i<=segments;i++){
-      x+=dx*segLen+(Math.random()-0.5)*8;
-      y+=dy*segLen+(Math.random()-0.5)*8;
-      ctx.lineTo(x,y);
-    }
-    ctx.strokeStyle=b.color; ctx.shadowColor=b.color; ctx.shadowBlur=10; ctx.lineWidth=2; ctx.stroke();
-  }
-
+  function drawStar(cx,cy,r,points,ctx){ var step=Math.PI/points,rot=-Math.PI/2; ctx.beginPath(); for(var i=0;i<points*2;i++){ var rad=i%2===0?r:r*.45; ctx.lineTo(cx+Math.cos(rot+step*i)*rad,cy+Math.sin(rot+step*i)*rad); } ctx.closePath(); }
+  function drawBolt(b,ctx){ var segments=5,x=b.x,y=b.y,dx=Math.cos(b.angle),dy=Math.sin(b.angle),segLen=b.length/segments; ctx.beginPath(); ctx.moveTo(x,y); for(var i=1;i<=segments;i++){ x+=dx*segLen+(Math.random()-.5)*8; y+=dy*segLen+(Math.random()-.5)*8; ctx.lineTo(x,y); } ctx.strokeStyle=b.color; ctx.shadowColor=b.color; ctx.shadowBlur=10; ctx.lineWidth=2; ctx.stroke(); }
   function drawLoop(){
     ctx.clearRect(0,0,W,H);
-    if(mode===1){
-      for(var i=particles.length-1;i>=0;i--){
-        var p=particles[i];
-        p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.alpha-=0.022; p.size*=0.97;
-        if(p.alpha<=0){particles.splice(i,1);continue;}
-        ctx.save(); ctx.globalAlpha=p.alpha; ctx.shadowColor=p.color; ctx.shadowBlur=10; ctx.fillStyle=p.color;
-        if(p.shape==='star'){drawStar(p.x,p.y,p.size,4,ctx);ctx.fill();}
-        else{ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();}
-        ctx.restore();
-      }
-    } else if(mode===2){
-      for(var t=0;t<trail.length;t++) trail[t].age++;
-      if(trail.length>2){
-        for(var t=1;t<trail.length;t++){
-          var prog=t/trail.length, alpha=prog*0.9, width=prog*10, hue=160+prog*80;
-          ctx.save(); ctx.globalAlpha=alpha; ctx.strokeStyle='hsl('+hue+',100%,65%)';
-          ctx.shadowColor='hsl('+hue+',100%,65%)'; ctx.shadowBlur=18; ctx.lineWidth=width; ctx.lineCap='round';
-          ctx.beginPath(); ctx.moveTo(trail[t-1].x,trail[t-1].y); ctx.lineTo(trail[t].x,trail[t].y); ctx.stroke(); ctx.restore();
-        }
-      }
-      if(trail.length){
-        var head=trail[trail.length-1];
-        ctx.save();
-        var grd=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,18);
-        grd.addColorStop(0,'rgba(255,255,255,0.9)'); grd.addColorStop(0.4,'rgba(34,211,165,0.7)'); grd.addColorStop(1,'rgba(34,211,165,0)');
-        ctx.fillStyle=grd; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=24;
-        ctx.beginPath(); ctx.arc(head.x,head.y,9,0,Math.PI*2); ctx.fill(); ctx.restore();
-      }
-      if(trail.length && trail[0].age>20) trail.shift();
-    } else if(mode===3){
-      for(var i=stars.length-1;i>=0;i--){
-        var s=stars[i];
-        s.x+=s.vx; s.y+=s.vy; s.vx*=0.96; s.vy*=0.96; s.alpha-=0.018; s.twinkle+=0.2;
-        if(s.alpha<=0){stars.splice(i,1);continue;}
-        ctx.save(); ctx.globalAlpha=s.alpha*(0.7+0.3*Math.abs(Math.sin(s.twinkle)));
-        ctx.shadowColor=s.color; ctx.shadowBlur=12; ctx.fillStyle=s.color;
-        drawStar(s.x,s.y,s.size+1,5,ctx); ctx.fill(); ctx.restore();
-      }
-      ctx.save();
-      for(var i=0;i<stars.length;i++){
-        for(var j=i+1;j<stars.length;j++){
-          var dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y;
-          var dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<80){
-            var lineAlpha=(1-dist/80)*Math.min(stars[i].alpha,stars[j].alpha)*0.3;
-            ctx.globalAlpha=lineAlpha; ctx.strokeStyle='#f5a623'; ctx.lineWidth=0.7;
-            ctx.beginPath(); ctx.moveTo(stars[i].x,stars[i].y); ctx.lineTo(stars[j].x,stars[j].y); ctx.stroke();
-          }
-        }
-      }
-      ctx.restore();
-    } else if(mode===4){
-      for(var i=bubbles.length-1;i>=0;i--){
-        var b=bubbles[i];
-        b.x+=b.vx; b.y+=b.vy; b.alpha-=0.008;
-        if(b.alpha<=0){bubbles.splice(i,1);continue;}
-        ctx.save(); ctx.globalAlpha=b.alpha;
-        ctx.strokeStyle=b.color; ctx.fillStyle='rgba(255,255,255,0.06)';
-        ctx.shadowColor=b.color; ctx.shadowBlur=8; ctx.lineWidth=1.4;
-        ctx.beginPath(); ctx.arc(b.x,b.y,b.size,0,Math.PI*2); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.arc(b.x-b.size*0.3,b.y-b.size*0.3,b.size*0.2,0,Math.PI*2);
-        ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.fill(); ctx.restore();
-      }
-    } else if(mode===5){
-      for(var i=bolts.length-1;i>=0;i--){
-        var b=bolts[i]; b.alpha-=0.05;
-        if(b.alpha<=0){bolts.splice(i,1);continue;}
-        ctx.save(); ctx.globalAlpha=b.alpha; drawBolt(b,ctx); ctx.restore();
-      }
-      ctx.save();
-      var grd2=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,16);
-      grd2.addColorStop(0,'rgba(255,255,255,0.8)'); grd2.addColorStop(1,'rgba(245,166,35,0)');
-      ctx.fillStyle=grd2; ctx.beginPath(); ctx.arc(mouse.x,mouse.y,16,0,Math.PI*2); ctx.fill(); ctx.restore();
-    }
+    if(mode===1){ for(var i=particles.length-1;i>=0;i--){ var p=particles[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=.06; p.alpha-=.022; p.size*=.97; if(p.alpha<=0){particles.splice(i,1);continue;} ctx.save(); ctx.globalAlpha=p.alpha; ctx.shadowColor=p.color; ctx.shadowBlur=10; ctx.fillStyle=p.color; if(p.shape==='star'){drawStar(p.x,p.y,p.size,4,ctx);ctx.fill();}else{ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();} ctx.restore(); } }
+    else if(mode===2){ for(var t=0;t<trail.length;t++) trail[t].age++; if(trail.length>2){ for(var t=1;t<trail.length;t++){ var prog=t/trail.length,alpha=prog*.9,width=prog*10,hue=160+prog*80; ctx.save(); ctx.globalAlpha=alpha; ctx.strokeStyle='hsl('+hue+',100%,65%)'; ctx.shadowColor='hsl('+hue+',100%,65%)'; ctx.shadowBlur=18; ctx.lineWidth=width; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(trail[t-1].x,trail[t-1].y); ctx.lineTo(trail[t].x,trail[t].y); ctx.stroke(); ctx.restore(); } } if(trail.length){ var head=trail[trail.length-1]; ctx.save(); var grd=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,18); grd.addColorStop(0,'rgba(255,255,255,0.9)'); grd.addColorStop(.4,'rgba(34,211,165,0.7)'); grd.addColorStop(1,'rgba(34,211,165,0)'); ctx.fillStyle=grd; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=24; ctx.beginPath(); ctx.arc(head.x,head.y,9,0,Math.PI*2); ctx.fill(); ctx.restore(); } if(trail.length && trail[0].age>20) trail.shift(); }
+    else if(mode===3){ for(var i=stars.length-1;i>=0;i--){ var s=stars[i]; s.x+=s.vx; s.y+=s.vy; s.vx*=.96; s.vy*=.96; s.alpha-=.018; s.twinkle+=.2; if(s.alpha<=0){stars.splice(i,1);continue;} ctx.save(); ctx.globalAlpha=s.alpha*(.7+.3*Math.abs(Math.sin(s.twinkle))); ctx.shadowColor=s.color; ctx.shadowBlur=12; ctx.fillStyle=s.color; drawStar(s.x,s.y,s.size+1,5,ctx); ctx.fill(); ctx.restore(); } ctx.save(); for(var i=0;i<stars.length;i++){ for(var j=i+1;j<stars.length;j++){ var dx=stars[i].x-stars[j].x,dy=stars[i].y-stars[j].y,dist=Math.sqrt(dx*dx+dy*dy); if(dist<80){ ctx.globalAlpha=(1-dist/80)*Math.min(stars[i].alpha,stars[j].alpha)*.3; ctx.strokeStyle='#f5a623'; ctx.lineWidth=.7; ctx.beginPath(); ctx.moveTo(stars[i].x,stars[i].y); ctx.lineTo(stars[j].x,stars[j].y); ctx.stroke(); } } } ctx.restore(); }
+    else if(mode===4){ for(var i=bubbles.length-1;i>=0;i--){ var b=bubbles[i]; b.x+=b.vx; b.y+=b.vy; b.alpha-=.008; if(b.alpha<=0){bubbles.splice(i,1);continue;} ctx.save(); ctx.globalAlpha=b.alpha; ctx.strokeStyle=b.color; ctx.fillStyle='rgba(255,255,255,0.06)'; ctx.shadowColor=b.color; ctx.shadowBlur=8; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(b.x,b.y,b.size,0,Math.PI*2); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(b.x-b.size*.3,b.y-b.size*.3,b.size*.2,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.fill(); ctx.restore(); } }
+    else if(mode===5){ for(var i=bolts.length-1;i>=0;i--){ var b=bolts[i]; b.alpha-=.05; if(b.alpha<=0){bolts.splice(i,1);continue;} ctx.save(); ctx.globalAlpha=b.alpha; drawBolt(b,ctx); ctx.restore(); } ctx.save(); var grd2=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,16); grd2.addColorStop(0,'rgba(255,255,255,0.8)'); grd2.addColorStop(1,'rgba(245,166,35,0)'); ctx.fillStyle=grd2; ctx.beginPath(); ctx.arc(mouse.x,mouse.y,16,0,Math.PI*2); ctx.fill(); ctx.restore(); }
     requestAnimationFrame(drawLoop);
   }
   drawLoop();
-
   document.addEventListener('click', function(e){
-    dot.style.transform='translate(-50%,-50%) scale(2.2)';
-    setTimeout(function(){ dot.style.transform='translate(-50%,-50%) scale(1)'; },280);
-    if(mode===1){
-      for(var i=0;i<8;i++){
-        var ang=Math.random()*Math.PI*2, spd=Math.random()*5+2;
-        particles.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*7+3,color:colors1[Math.floor(Math.random()*colors1.length)],shape:'star'});
-      }
-    } else if(mode===2){
-      (function(){
-        var cx=e.clientX,cy=e.clientY,r=0,alpha=1;
-        var ri=setInterval(function(){
-          r+=6; alpha-=0.07;
-          if(alpha<=0){clearInterval(ri);return;}
-          ctx.save(); ctx.globalAlpha=alpha; ctx.strokeStyle='#22d3a5'; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=20; ctx.lineWidth=3;
-          ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke(); ctx.restore();
-        },16);
-      })();
-    } else if(mode===3){
-      for(var i=0;i<16;i++){
-        var ang=Math.random()*Math.PI*2, spd=Math.random()*6+2;
-        stars.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*5+2,color:colors3[Math.floor(Math.random()*colors3.length)],twinkle:Math.random()*Math.PI*2});
-      }
-    } else if(mode===4){
-      for(var i=0;i<10;i++){
-        var ang=Math.random()*Math.PI*2, spd=Math.random()*2+0.5;
-        bubbles.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd-0.5,alpha:0.9,size:Math.random()*12+5,color:colors4[Math.floor(Math.random()*colors4.length)]});
-      }
-    } else if(mode===5){
-      for(var i=0;i<10;i++){
-        bolts.push({x:e.clientX,y:e.clientY,angle:(Math.PI*2/10)*i,length:Math.random()*40+30,alpha:1,color:colors5[Math.floor(Math.random()*colors5.length)]});
-      }
-    }
+    dot.style.transform='translate(-50%,-50%) scale(2.2)'; setTimeout(function(){ dot.style.transform='translate(-50%,-50%) scale(1)'; },280);
+    if(mode===1){ for(var i=0;i<8;i++){ var ang=Math.random()*Math.PI*2,spd=Math.random()*5+2; particles.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*7+3,color:colors1[Math.floor(Math.random()*colors1.length)],shape:'star'}); } }
+    else if(mode===2){ (function(){ var cx=e.clientX,cy=e.clientY,r=0,alpha=1; var ri=setInterval(function(){ r+=6; alpha-=.07; if(alpha<=0){clearInterval(ri);return;} ctx.save(); ctx.globalAlpha=alpha; ctx.strokeStyle='#22d3a5'; ctx.shadowColor='#22d3a5'; ctx.shadowBlur=20; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke(); ctx.restore(); },16); })(); }
+    else if(mode===3){ for(var i=0;i<16;i++){ var ang=Math.random()*Math.PI*2,spd=Math.random()*6+2; stars.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,alpha:1,size:Math.random()*5+2,color:colors3[Math.floor(Math.random()*colors3.length)],twinkle:Math.random()*Math.PI*2}); } }
+    else if(mode===4){ for(var i=0;i<10;i++){ var ang=Math.random()*Math.PI*2,spd=Math.random()*2+.5; bubbles.push({x:e.clientX,y:e.clientY,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd-.5,alpha:.9,size:Math.random()*12+5,color:colors4[Math.floor(Math.random()*colors4.length)]}); } }
+    else if(mode===5){ for(var i=0;i<10;i++){ bolts.push({x:e.clientX,y:e.clientY,angle:(Math.PI*2/10)*i,length:Math.random()*40+30,alpha:1,color:colors5[Math.floor(Math.random()*colors5.length)]}); } }
   });
 })();
 
-/* ════════════════════════════════════════
-   COPY FUNCTIONALITY
-════════════════════════════════════════ */
-function copyCode(btn){
-  var code = btn.closest('.code-block').querySelector('code');
-  var text = code.innerText || code.textContent;
-  navigator.clipboard.writeText(text.trim()).then(function(){
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
-}
+function copyCode(btn){ var code = btn.closest('.code-block').querySelector('code'); var text = code.innerText || code.textContent; navigator.clipboard.writeText(text.trim()).then(function(){ btn.textContent = '✓ Copied!'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); }); }
 
-/* ════════════════════════════════════════
-   SEARCH
-════════════════════════════════════════ */
 var searchEngine = 'google';
-function setSearch(engine, e){
-  searchEngine = engine;
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  if(e && e.target) e.target.classList.add('active');
-  var input = document.getElementById('searchInput');
-  input.placeholder = engine === 'youtube'
-    ? 'Search YouTube for tutorials...'
-    : 'Search Google for web dev resources...';
-}
-function doSearch(){
-  var q = document.getElementById('searchInput').value.trim();
-  if(!q) return;
-  var url = searchEngine === 'youtube'
-    ? 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q)
-    : 'https://www.google.com/search?q=' + encodeURIComponent(q);
-  window.open(url, '_blank');
-}
+function setSearch(engine, e){ searchEngine = engine; document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); }); if(e && e.target) e.target.classList.add('active'); var input = document.getElementById('searchInput'); input.placeholder = engine === 'youtube' ? 'Search YouTube for tutorials...' : 'Search Google for web dev resources...'; }
+function doSearch(){ var q = document.getElementById('searchInput').value.trim(); if(!q) return; var url = searchEngine === 'youtube' ? 'https://www.youtube.com/results?search_query='+encodeURIComponent(q) : 'https://www.google.com/search?q='+encodeURIComponent(q); window.open(url,'_blank'); }
 </script>
 </body>
 </html>
